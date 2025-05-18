@@ -1,0 +1,10 @@
+SCRIPT
+\.autobrew.sh
+
+GIT
+\.git
+\.gitignore
+
+README
+^/README
+^/README.md
