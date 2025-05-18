@@ -207,7 +207,7 @@ brew_cleanup() {
 # Stow dotfiles
 stow_dotfiles() {
     term_message cb "\nStowing dotfiles..."
-    stow --dir="$HOME/.dotfiles" --target="$HOME"
+    stow .
     term_message yb "Dotfiles have been stowed. Please run 'source ~/.zshrc' or restart your terminal to load your new environment variables."
 
 }
@@ -228,14 +228,21 @@ install_or_update_eas_cli() {
     fi
 }
 
+reminder_manual_installs() {
+    term_message yb "\nManual steps required:"
+    term_message yb "1. Install Xcode from the Mac App Store."
+    term_message yb "2. Download and install Android Studio from https://developer.android.com/studio"
+    term_message yb "   (Drag Android Studio into your Applications folder and run it once to complete setup.)"
+    term_message yb "3. Open Android Studio and follow the setup wizard to install SDKs and emulators."
+}
 
 # One function to rule them all.
 main() {
     # Customise the following list variables (tap_list, term_list and cask_list) 
     # Leave list blank or comment out the list if not required.
     tap_list="nikitabobko/tap"
-    term_list="neovim tmux git gh awscli vercel-cli pnpm nvm openjdk stow watchman"
-    cask_list="font-jetbrains-mono-nerd-font karabiner-elements android-studio xcode ghostty nikitabobko/tap/aerospace gimp zulu@17"
+    term_list="neovim tmux git gh awscli vercel-cli pnpm nvm stow watchman"
+    cask_list="font-jetbrains-mono-nerd-font karabiner-elements ghostty nikitabobko/tap/aerospace gimp zulu@17"
     clear
     term_colors
     script_info
@@ -247,6 +254,7 @@ main() {
     stow_dotfiles
     install_or_update_eas_cli
     term_message gb "\nScript completed."
+    reminder_manual_installs
 }
 
 main "${@}"
