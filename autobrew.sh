@@ -234,6 +234,7 @@ reminder_manual_installs() {
     term_message yb "2. Download and install Android Studio from https://developer.android.com/studio"
     term_message yb "   (Drag Android Studio into your Applications folder and run it once to complete setup.)"
     term_message yb "3. Open Android Studio and follow the setup wizard to install SDKs and emulators."
+    term_message yb "4. Restart your terminal to apply changes or run 'source ~/.zshrc'."
 }
 
 # One function to rule them all.
@@ -241,7 +242,7 @@ main() {
     # Customise the following list variables (tap_list, term_list and cask_list) 
     # Leave list blank or comment out the list if not required.
     tap_list="nikitabobko/tap"
-    term_list="neovim tmux git gh awscli vercel-cli pnpm nvm stow watchman"
+    term_list="neovim tmux git gh awscli vercel-cli pnpm yarn nvm stow watchman"
     cask_list="font-jetbrains-mono-nerd-font karabiner-elements ghostty nikitabobko/tap/aerospace gimp zulu@17"
     clear
     term_colors
@@ -251,8 +252,8 @@ main() {
     install_homebrew
     brew_packages
     brew_cleanup
-    stow_dotfiles
     install_or_update_eas_cli
+    stow_dotfiles
     term_message gb "\nScript completed."
     reminder_manual_installs
 }

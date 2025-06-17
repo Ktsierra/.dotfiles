@@ -1,10 +1,13 @@
-SCRIPT
-\.autobrew.sh
+# Scripts
+autobrew.sh
 
-GIT
-\.git
-\.gitignore
+# Git
+.git
+.gitignore
 
-README
-^/README
-^/README.md
+# Readme files
+^README
+^README.md
+
+# Karabiner config generator repo (only the root-level one)
+karabiner-setup
