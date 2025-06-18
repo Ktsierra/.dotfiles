@@ -1734,6 +1734,33 @@
                     "value": 1
                   }
                 ]
+              },
+              {
+                "description": "Aerospace Alt+R: Resize Mode",
+                "to": [
+                  {
+                    "key_code": "r",
+                    "modifiers": [
+                      "right_option"
+                    ]
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "r",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_w",
+                    "value": 1
+                  }
+                ]
               }
             ]
           },

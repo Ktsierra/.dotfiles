@@ -193,6 +193,15 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
+      r: {
+        description: "Aerospace Alt+R: Resize Mode", // for windows
+        to: [
+          {
+            key_code: "r",
+            modifiers: ["right_option"],
+          },
+        ],
+      }
     },
 
     // s = "System"
