@@ -8,12 +8,11 @@ const rules: KarabinerRules[] = [
     description: "Hyper Key (⌃⌥⇧⌘)",
     manipulators: [
       {
-        description: "Caps Lock -> Hyper Key",
+        description: " Right Command -> Hyper Key",
         from: {
-          key_code: "caps_lock",
-          modifiers: {
-            optional: ["any"],
-          },
+          key_code: "right_command", // Changed from caps_lock to right_command
+          // key_code: "caps_lock", // Original line, kept for reference
+          modifiers: { optional: ["any"] },
         },
         to: [
           {
@@ -33,13 +32,32 @@ const rules: KarabinerRules[] = [
         ],
         to_if_alone: [
           {
-            key_code: "escape",
+             key_code: "tab",
+             modifiers: ["right_command"]
           },
         ],
         type: "basic",
       },
     ],
   },
+
+{
+  description: "Caps Lock -> Escape or Control",
+  manipulators: [
+    {
+      type: "basic",
+      from: {
+        key_code: "caps_lock",
+        modifiers: {
+          optional: ["any"]
+        }
+      },
+      to_if_alone: [{ key_code: "escape" }],
+      to: [{ key_code: "left_control" }],
+    }
+  ]
+},
+  
 
   ...createHyperSubLayers({
 /*     spacebar: open(
@@ -49,16 +67,32 @@ const rules: KarabinerRules[] = [
     b: {
       t: open("https://twitter.com"),
       r: open("https://reddit.com"),
+      g: open("https://github.com"),
+      y: open("https://youtube.com"),
+      p: open("https://perplexity.ai"),
+      s: open("https://google.com"), // search
     },
+
     // o = "Open" applications
     o: {
-      t: app("Ghostty"),
+      x: app("Xcode"),
+      c: app("Visual Studio Code"),
+      s: app("System Settings"),
+      m: app("Mail"),
+      f: app("TestFlight"),
+      t: app("Copilot"),
+      k: app("Karabiner-Elements"),
+      a: app("AeroSpace"),
+      p: app("Launchpad"),
+      d: app("Android Studio"), 
+      i: app("iPhone Mirroring")
+      
     },
 
     // w = "Window"
     w: {
       semicolon: {
-        description: "Window: Hide",
+        description: "Window: Hide", // to hide the current window, regular macOS behavior
         to: [
           {
             key_code: "h",
@@ -66,15 +100,55 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      y: window("previous-display"),
-      o: window("next-display"),
-      k: window("top-half"),
-      j: window("bottom-half"),
-      h: window("left-half"),
-      l: window("right-half"),
-      f: window("maximize"),
+      //y: window("previous-display"), // i only use one display
+      // o: window("next-display"), // i only use one display
+      k: {
+        description: "Areospace: Alt+K: Focus Up Window", // to focus the window above
+        to: [
+          {
+            key_code: "k",
+            modifiers: ["right_option"],
+          },
+        ],
+      },
+      j: {
+        description: "Areospace: Alt+J: Focus Down Window", // to focus the window below
+        to: [
+          {
+            key_code: "j",
+            modifiers: ["right_option"],
+          },
+        ],
+      },
+      h: {
+        description: "Areospace: Alt+H: Focus Left Window", // to focus the window on the left
+        to: [
+          {
+            key_code: "h",
+            modifiers: ["right_option"],
+          },
+        ],
+      },
+      l: {
+        description: "Areospace: Alt+L: Focus Right Window", // to focus the window on the right
+        to: [
+          {
+            key_code: "l",
+            modifiers: ["right_option"],
+          },
+        ],
+      },
+      f: {
+        description: "Window: Fullscreen", // to toggle fullscreen in aerospace
+        to: [
+          {
+            key_code: "f",
+            modifiers: ["right_option"],
+          },
+        ],
+      },
       u: {
-        description: "Window: Previous Tab",
+        description: "Window: Previous Tab", // for browsers and terminal
         to: [
           {
             key_code: "tab",
@@ -83,7 +157,7 @@ const rules: KarabinerRules[] = [
       ],
       },
       i: {
-        description: "Window: Next Tab",
+        description: "Window: Next Tab", // for browsers and terminal
         to: [
           {
             key_code: "tab",
@@ -92,7 +166,7 @@ const rules: KarabinerRules[] = [
       ],
       },
       n: {
-        description: "Window: Next Window",
+        description: "Window: Next Window", // same app next window, for several terminals or browsers windows
         to: [
           {
             key_code: "grave_accent_and_tilde",
@@ -101,7 +175,7 @@ const rules: KarabinerRules[] = [
         ],
       },
       b: {
-        description: "Window: Back",
+        description: "Window: Back", // for safari and finder
         to: [
           {
             key_code: "open_bracket",
@@ -111,7 +185,7 @@ const rules: KarabinerRules[] = [
       },
       // Note: No literal connection. Both f and n are already taken.
       m: {
-        description: "Window: Forward",
+        description: "Window: Forward", // for safari and finder
         to: [
           {
             key_code: "close_bracket",
@@ -220,7 +294,16 @@ const rules: KarabinerRules[] = [
         "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2"
       ),
     }, */
+   
+    1: app("Safari"),
+    2: app("Ghostty"),
+    3: app("Visual Studio Code"),
+    4: app("Finder"),
+    5: app("System Settings"),
+    6: app("GIMP"),
 
+
+    // vim like navigation
     h: {
       to: [{ key_code: "left_arrow" }],
     },
