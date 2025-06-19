@@ -11,3 +11,6 @@ autobrew.sh
 
 # Karabiner config generator repo (only the root-level one)
 karabiner-setup
+
+# DS_Store
+.DS_Store
