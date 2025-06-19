@@ -209,7 +209,6 @@ stow_dotfiles() {
     term_message cb "\nStowing dotfiles..."
     stow .
     term_message yb "Dotfiles have been stowed. Please run 'source ~/.zshrc' or restart your terminal to load your new environment variables."
-
 }
 
 install_or_update_eas_cli() {
@@ -225,6 +224,24 @@ install_or_update_eas_cli() {
         term_message gb "eas-cli is now installed (version $new_version)."
     else
         term_message rb "Failed to install or update eas-cli."
+    fi
+}
+
+# make tmuxKillSessions.sh executable
+make_tmux_kill_sessions_executable() {
+    if [[ -f "$HOME/.config/tmux/tmuxKillSessions.sh" ]]; then
+        if [[ ! -x "$HOME/.config/tmux/tmuxKillSessions.sh" ]]; then
+            term_message cb "Making tmuxKillSessions.sh executable..."
+            if chmod +x "$HOME/.config/tmux/tmuxKillSessions.sh"; then
+                term_message gb "tmuxKillSessions.sh is now executable."
+            else
+                term_message rb "Failed to make tmuxKillSessions.sh executable."
+            fi
+        else
+            term_message yb "tmuxKillSessions.sh is already executable."
+        fi
+    else
+        term_message rb "tmuxKillSessions.sh not found in $HOME/.config/tmux. Please ensure the file exists."
     fi
 }
 
@@ -254,6 +271,7 @@ main() {
     brew_cleanup
     install_or_update_eas_cli
     stow_dotfiles
+    make_tmux_kill_sessions_executable
     term_message gb "\nScript completed."
     reminder_manual_installs
 }
