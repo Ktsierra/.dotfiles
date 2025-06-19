@@ -57,7 +57,52 @@ const rules: KarabinerRules[] = [
     }
   ]
 },
-  
+
+{
+  description: "Left Command -> Command or Cmd + C if pressed alone",
+  manipulators: [
+    {
+      type: "basic",
+      from: {
+        key_code: "left_command"
+      },
+      to: [
+        {
+          key_code: "left_command"
+        }
+      ],
+      to_if_alone: [
+        {
+          key_code: "c",
+          modifiers: ["left_command"]
+        }
+      ]
+    }
+  ]
+},
+
+{
+  description: "Left Option -> Left Option or Cmd + V if pressed alone",
+  manipulators: [
+    {
+      type: "basic",
+      from: {
+        key_code: "left_option"
+      },
+      to: [
+        {
+          key_code: "left_option"
+        }
+      ],
+      to_if_alone: [
+        {
+          key_code: "v",
+          modifiers: ["left_command"]
+        }
+      ]
+    }
+  ]
+},
 
   ...createHyperSubLayers({
 /*     spacebar: open(
