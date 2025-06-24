@@ -219,11 +219,14 @@ install_or_update_eas_cli() {
     else
         term_message mb "eas-cli not found. Installing globally with npm..."
     fi
+
+    # Always attempt to install the latest version
     if npm install -g eas-cli; then
         new_version=$(eas --version)
-        term_message gb "eas-cli is now installed (version $new_version)."
+        term_message gb "eas-cli installed/updated successfully (version $new_version)."
     else
-        term_message rb "Failed to install or update eas-cli."
+        term_message rb "Failed to install/update eas-cli. Please ensure you have Node.js and npm installed."
+        exit 1
     fi
 }
 
@@ -259,7 +262,7 @@ main() {
     # Customise the following list variables (tap_list, term_list and cask_list) 
     # Leave list blank or comment out the list if not required.
     tap_list="nikitabobko/tap"
-    term_list="neovim tmux git gh awscli vercel-cli pnpm yarn nvm stow watchman"
+    term_list="neovim tmux git gh awscli vercel-cli pnpm yarn nvm stow watchman starship fzf eza bat ripgrep"
     cask_list="font-jetbrains-mono-nerd-font karabiner-elements ghostty nikitabobko/tap/aerospace gimp zulu@17"
     clear
     term_colors
