@@ -85,3 +85,97 @@ fi
 # This is for macOS to make key repeat faster
 defaults write -g KeyRepeat -int 1
 defaults write -g InitialKeyRepeat -int 15
+
+# Disable homebrew automatic updates
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Brew autocompletion settings
+# https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+# -v makes command display a description of how the shell would
+# invoke the command, so you're checking if the command exists and is executable.
+if command -v brew &>/dev/null; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
+# =====================================================================================
+# CLI Tools
+# =====================================================================================
+#
+# Starship
+# Not sure if counts a CLI tool, because it only makes my prompt more useful
+# https://starship.rs/config/#prompt
+# I was getting this error
+# starship_zle-keymap-select-wrapped:1: maximum nested function level reached; increase FUNCNEST?
+# Check that the function `starship_zle-keymap-select()` is defined
+# https://github.com/starship/starship/issues/3418
+if command -v starship &>/dev/null; then
+  type starship_zle-keymap-select >/dev/null ||
+    {
+      eval "$(starship init zsh)" >/dev/null 2>&1
+    }
+fi
+
+# Initialize fzf if installed
+# https://github.com/junegunn/fzf
+# The following are custom fzf menus I configured
+# hyper+e+n tmux-sshonizer-agen
+# hyper+t+n prime's tmux-sessionizer
+# hyper+c+n colorscheme selector
+#
+# Useful commands
+# ctrl+r - command history
+# ctrl+t - search for files
+# ssh ::<tab><name> - shows you list of hosts in case don't remember exact name
+# kill -9 ::<tab><name> - find and kill a process
+# telnet ::<TAB>
+#
+if [ -f ~/.fzf.zsh ]; then
+
+  # After installing fzf with brew, you have to run the install script
+  # echo -e "y\ny\nn" | /opt/homebrew/opt/fzf/install
+
+  source ~/.fzf.zsh
+  source <(fzf --zsh)
+
+  # Preview file content using bat
+  export FZF_CTRL_T_OPTS="
+    --preview 'bat -n --color=always {}'
+    --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+  # Use :: as the trigger sequence instead of the default **
+  export FZF_COMPLETION_TRIGGER='::'
+
+  # Eldritch Colorscheme / theme
+  # https://github.com/eldritch-theme/fzf
+  export FZF_DEFAULT_OPTS='--color=fg:#ebfafa,bg:#09090d,hl:#37f499 --color=fg+:#ebfafa,bg+:#0D1116,hl+:#37f499 --color=info:#04d1f9,prompt:#04d1f9,pointer:#7081d0 --color=marker:#7081d0,spinner:#f7c67f,header:#323449'
+fi
+
+# eza
+# ls replacement
+# exa is unmaintained, so now using eza
+# https://github.com/ogham/exa
+# https://github.com/eza-community/eza
+# uses colours to distinguish file types and metadata. It knows about
+# symlinks, extended attributes, and Git.
+if command -v eza &>/dev/null; then
+  alias ls='eza'
+  alias ll='eza -lhg'
+  alias la='eza -ahg'
+  alias lla='eza -alhg'
+  alias tree='eza --tree'
+fi
+
+# Bat -> Cat with wings
+# https://github.com/sharkdp/bat
+# Supports syntax highlighting for a large number of programming and markup languages
+if command -v bat &>/dev/null; then
+  # --style=plain - removes line numbers and git modifications
+  # --paging=never - doesnt pipe it through less
+  alias cat='bat'
+  alias catt='bat --paging=never --style=plain'
+  # alias cata='bat --show-all --paging=never'
+  alias cata='bat --show-all --paging=never --style=plain'
+fi
