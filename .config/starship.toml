@@ -6,26 +6,24 @@
 #include "all defined vcs"
 #include "all defined environments"
 format = """
-[](red)\
+[ ](blue)\
 $os\
 $username\
-[](bg:peach fg:red)\
+[](bg:sapphire fg:blue)\
 $directory\
-[](bg:yellow fg:peach)\
+[](bg:green fg:sapphire)\
 $git_branch\
 $git_status\
-[](fg:yellow bg:green)\
+[](fg:green bg:lavender)\
 $c\
 $rust\
 $golang\
-$nodejs\
 $php\
 $java\
 $kotlin\
 $haskell\
 $python\
 $swift\
-$typescript\
 $elm\
 $elixir\
 $crystal\
@@ -40,13 +38,14 @@ $deno\
 $crystal\
 $dart\
 $elixir\
-[](fg:green bg:sapphire)\
+[](fg:lavender bg:teal)\
 $conda\
-[](fg:sapphire bg:lavender)\
+$nodejs\
+$react\
+[](fg:teal bg:mauve)\
 $time\
-[ ](fg:lavender)\
+[ ](fg:mauve)\
 $cmd_duration\
-$line_break\
 $character"""
 
 palette = 'eldritch_darker'
@@ -54,7 +53,7 @@ palette = 'eldritch_darker'
 
 [os]
 disabled = false
-style = "bg:red fg:crust"
+style = "bg:blue fg:crust"
 
 [os.symbols]
 Windows = ""
@@ -105,13 +104,13 @@ Void = " "
 
 [username]
 show_always = true
-style_user = "bg:red fg:crust"
-style_root = "bg:red fg:crust"
+style_user = "bg:blue fg:crust"
+style_root = "bg:blue fg:crust"
 format = '[ $user]($style)'
 
 [directory]
 read_only = " 󰌾"
-style = "bg:peach fg:crust"
+style = "bg:sapphire fg:crust"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -125,57 +124,72 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:yellow"
-format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
+style = "bg:green"
+format = '[[ $symbol $branch ](fg:crust bg:green)]($style)'
 
 [git_status]
-style = "bg:yellow"
-format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+style = "bg:green"
+format = '[[($all_status$ahead_behind )](fg:crust bg:green)]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
 
 [c]
 symbol = " "
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
 
 [rust]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
 
 [golang]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
 
 [php]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
 
 [java]
 symbol = " "
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
 
 [kotlin]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
 
 [haskell]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
 
 [python]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
+style = "bg:teal"
+format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:teal)]($style)'
+
+[swift]
+symbol = ""
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
+
+[lua]
+symbol = ""
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
+
+[cpp]
+symbol = ""
+style = "bg:teal"
+format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
 
 [docker_context]
 symbol = ""
@@ -184,24 +198,24 @@ format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
 [conda]
 symbol = "  "
-style = "fg:crust bg:sapphire"
+style = "fg:crust bg:teal"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
 
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:lavender"
-format = '[[  $time ](fg:crust bg:lavender)]($style)'
+style = "bg:mauve"
+format = '[[  $time ](fg:crust bg:mauve)]($style)'
 
 # disable the line break, everything will be on one line
 [line_break]
-disabled = true
+disabled = false
 
 [character]
 disabled = false
-success_symbol = '[](bold fg:green)'
-error_symbol = '[](bold fg:red)'
+success_symbol = '[](bold fg:green)'
+error_symbol = '[](bold fg:red)'
 vimcmd_symbol = '[](bold fg:green)'
 vimcmd_replace_one_symbol = '[](bold fg:lavender)'
 vimcmd_replace_symbol = '[](bold fg:lavender)'
@@ -210,178 +224,66 @@ vimcmd_visual_symbol = '[](bold fg:yellow)'
 [cmd_duration]
 show_milliseconds = true
 format = " in $duration "
-style = "bg:lavender"
+style = "bg:mauve"
 disabled = false
 show_notifications = true
 min_time_to_notify = 45000
 
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
-
-[palettes.catppuccin_frappe]
-rosewater = "#f2d5cf"
-flamingo = "#eebebe"
-pink = "#f4b8e4"
-mauve = "#ca9ee6"
-red = "#e78284"
-maroon = "#ea999c"
-peach = "#ef9f76"
-yellow = "#e5c890"
-green = "#a6d189"
-teal = "#81c8be"
-sky = "#99d1db"
-sapphire = "#85c1dc"
-blue = "#8caaee"
-lavender = "#babbf1"
-text = "#c6d0f5"
-subtext1 = "#b5bfe2"
-subtext0 = "#a5adce"
-overlay2 = "#949cbb"
-overlay1 = "#838ba7"
-overlay0 = "#737994"
-surface2 = "#626880"
-surface1 = "#51576d"
-surface0 = "#414559"
-base = "#303446"
-mantle = "#292c3c"
-crust = "#232634"
-
-[palettes.catppuccin_latte]
-rosewater = "#dc8a78"
-flamingo = "#dd7878"
-pink = "#ea76cb"
-mauve = "#8839ef"
-red = "#d20f39"
-maroon = "#e64553"
-peach = "#fe640b"
-yellow = "#df8e1d"
-green = "#40a02b"
-teal = "#179299"
-sky = "#04a5e5"
-sapphire = "#209fb5"
-blue = "#1e66f5"
-lavender = "#7287fd"
-text = "#4c4f69"
-subtext1 = "#5c5f77"
-subtext0 = "#6c6f85"
-overlay2 = "#7c7f93"
-overlay1 = "#8c8fa1"
-overlay0 = "#9ca0b0"
-surface2 = "#acb0be"
-surface1 = "#bcc0cc"
-surface0 = "#ccd0da"
-base = "#eff1f5"
-mantle = "#e6e9ef"
-crust = "#dce0e8"
-
-[palettes.catppuccin_macchiato]
-rosewater = "#f4dbd6"
-flamingo = "#f0c6c6"
-pink = "#f5bde6"
-mauve = "#c6a0f6"
-red = "#ed8796"
-maroon = "#ee99a0"
-peach = "#f5a97f"
-yellow = "#eed49f"
-green = "#a6da95"
-teal = "#8bd5ca"
-sky = "#91d7e3"
-sapphire = "#7dc4e4"
-blue = "#8aadf4"
-lavender = "#b7bdf8"
-text = "#cad3f5"
-subtext1 = "#b8c0e0"
-subtext0 = "#a5adcb"
-overlay2 = "#939ab7"
-overlay1 = "#8087a2"
-overlay0 = "#6e738d"
-surface2 = "#5b6078"
-surface1 = "#494d64"
-surface0 = "#363a4f"
-base = "#24273a"
-mantle = "#1e2030"
-crust = "#181926"
-
 [palettes.eldritch_default]
-rosewater = "#7081d0"
-flamingo = "#7081d0"
-pink = "#a48cf2"
-mauve = "#a48cf2"
-red = "#f16c75"
-maroon = "#f16c75"
-peach = "#7081d0"
-yellow = "#04d1f9"
-green = "#37f499"
-teal = "#04d1f9"
-sky = "#04d1f9"
-sapphire = "#04d1f9"
-blue = "#7081d0"
-lavender = "#a48cf2"
-text = "#ebfafa"
-subtext1 = "#ABB4DA"
-subtext0 = "#7081d0"
-overlay2 = "#6473B7"
-overlay1 = "#5866A2"
-overlay0 = "#3b4261"
-surface2 = "#414868"
-surface1 = "#292e42"
-surface0 = "#212337"
-base = "#212337"
-mantle = "#171928"
-crust = "#171928"
+rosewater = "#f265b5"    # original magenta
+flamingo = "#f16c75"     # original coral
+pink = "#fd92ce"         # brighter pink variant
+mauve = "#a48cf2"        # original purple
+red = "#f9515d"          # original red
+maroon = "#d4405a"       # darker red variant
+peach = "#ffb347"        # warm orange (peach tone)
+yellow = "#e9f941"       # original yellow
+green = "#37f499"        # original green
+teal = "#2dd4aa"         # green-teal hybrid
+sky = "#04d1f9"          # original cyan
+sapphire = "#66e4fd"     # lighter cyan variant
+blue = "#9071f4"         # original blue
+lavender = "#b794f6"     # lighter purple variant
+text = "#ebfafa"         # original foreground
+subtext1 = "#ffffff"     # pure white
+subtext0 = "#7081d0"     # original muted blue
+overlay2 = "#5a9c7a"     # muted green
+overlay1 = "#c9d142"     # muted yellow-green
+overlay0 = "#d666a3"     # muted pink
+surface2 = "#2a2d40"     # slightly lighter than base
+surface1 = "#252842"     # between surface2 and surface0
+surface0 = "#21222c"     # original dark
+base = "#212337"         # original background
+mantle = "#1d1e2a"       # darker than base
+crust = "#191a25"        # darkest
 
 [palettes.eldritch_darker]
-rosewater = "#506299"
-flamingo = "#506299"
-pink = "#8b75d9"
-mauve = "#8b75d9"
-red = "#cc5860"
-maroon = "#cc5860"
-peach = "#506299"
-yellow = "#0396b3"
-green = "#2dcc82"
-teal = "#0396b3"
-sky = "#0396b3"
-sapphire = "#0396b3"
-blue = "#506299"
-lavender = "#8b75d9"
-text = "#d8e6e6"
-subtext1 = "#8e94b8"
-subtext0 = "#506299"
-overlay2 = "#445084"
-overlay1 = "#3d4775"
-overlay0 = "#2d3249"
-surface2 = "#2a2e45"
-surface1 = "#1e2033"
-surface0 = "#171928"
-base = "#171928"
-mantle = "#0f101a"
-crust = "#0f101a"
+rosewater = "#cc4d99"    # darker magenta
+flamingo = "#cc5860"     # darker coral
+pink = "#d47ba8"         # darker pink variant
+mauve = "#8b75d9"        # darker purple
+red = "#d1424a"          # darker red
+maroon = "#b33648"       # darkest red variant
+peach = "#d4943d"        # darker warm orange
+yellow = "#c4d136"       # darker yellow
+green = "#2dcc82"        # darker green
+teal = "#25a88a"         # darker green-teal
+sky = "#0396b3"          # darker cyan
+sapphire = "#52c7d9"     # darker light cyan
+blue = "#7a5dd1"         # darker blue
+lavender = "#9b7dd3"     # darker light purple
+text = "#d8e6e6"         # darker foreground
+subtext1 = "#c4d0d0"     # darker white
+subtext0 = "#5c6ba6"     # darker muted blue
+overlay2 = "#4a8066"     # darker muted green
+overlay1 = "#a8b035"     # darker muted yellow-green
+overlay0 = "#b85389"     # darker muted pink
+surface2 = "#22243a"     # darker surface
+surface1 = "#1f2138"     # darker between surfaces
+surface0 = "#1a1b24"     # darker original dark
+base = "#1a1b2e"         # darker background
+mantle = "#171823"       # darker than base
+crust = "#14151f"        # darkest
 
 [aws]
 symbol = "  "
@@ -391,9 +293,6 @@ symbol = " "
 
 [bun]
 symbol = " "
-
-[cpp]
-symbol = " "
 
 [cmake]
 symbol = " "
@@ -440,9 +339,6 @@ ssh_symbol = " "
 [julia]
 symbol = " "
 
-[lua]
-symbol = " "
-
 [memory_usage]
 symbol = "󰍛 "
 
@@ -478,9 +374,6 @@ symbol = " "
 
 [scala]
 symbol = " "
-
-[swift]
-symbol = " "
 
 [zig]
 symbol = " "
