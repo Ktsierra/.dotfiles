@@ -1,2 +1,47 @@
 theme = Eldritch
+
+# Background settings for ghostty
 background-opacity = 0.8
+    # fixed to color till i can figure out how to use a wallpaper or enable transparency to desktop
+background-blur = true
+
+# Clipboard settings for ghostty
+clipboard-read = allow
+clipboard-write = allow
+
+# Font settings for ghostty
+font-family = "JetBrainsMono NFM"
+font-size = 14
+font-style = Medium
+window-inherit-font-size = true
+
+# Cursor and Mouse settings
+shell-integration-features = no-cursor
+cursor-style = block
+mouse-hide-while-typing = true
+
+# Window settings for ghostty
+window-decoration = false
+window-padding-x = 10,10
+window-padding-y = 10,10
+macos-titlebar-style = hidden
+link-url = true
+confirm-close-surface = false
+
+# The following command checks if tmux is installed.
+# If tmux is installed, it automatically attaches to an existing tmux session.
+# If no tmux session exists, a new one is created.
+# If tmux is not installed, it simply starts zsh without tmux.
+#
+# For this to work properly, you need to make sure that your shell is configured
+# for homebrew, so you should have this line:
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+# In your ~/.zprofile file
+# If you don't have that line, or if the file doesn't exist, run this:
+# echo '' >>~/.zprofile && echo '# Configure shell for brew' >>~/.zprofile && echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>~/.zprofile && eval "$(/opt/homebrew/bin/brew shellenv)"
+#
+# This assumes you installed tmux through brew if using macos
+# command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
+#
+# commented till sessionizer is working properly
+# command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then $HOME/.config/tmux/tmux-sessionizer.sh $HOME/.dotfiles || (tmux attach 2>/dev/null || tmux); else exec zsh; fi"
