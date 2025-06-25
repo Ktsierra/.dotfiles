@@ -195,6 +195,16 @@ brew_packages() {
     fi
 }
 
+#fzf after installing fzf
+fzf_post_install() {
+    if command -v fzf >/dev/null 2>&1; then
+        term_message cb "\nRunning fzf post-installation script..."
+        echo -e "y\ny\nn" | /opt/homebrew/opt/fzf/install >/dev/null 2>&1
+        term_message gb "fzf post-installation script completed."
+        return
+    fi
+}
+
 brew_cleanup() {
     task_start "Running brew cleanup..."
     if brew cleanup >/dev/null 2>&1; then
@@ -230,21 +240,32 @@ install_or_update_eas_cli() {
     fi
 }
 
-# make tmuxKillSessions.sh executable
-make_tmux_kill_sessions_executable() {
-    if [[ -f "$HOME/.config/tmux/tmuxKillSessions.sh" ]]; then
-        if [[ ! -x "$HOME/.config/tmux/tmuxKillSessions.sh" ]]; then
-            term_message cb "Making tmuxKillSessions.sh executable..."
-            if chmod +x "$HOME/.config/tmux/tmuxKillSessions.sh"; then
-                term_message gb "tmuxKillSessions.sh is now executable."
+# make tmuxKillSessions.sh and tmux-sessionizer.sh executable
+make_tmux_scripts_executable() {
+    for script in "tmuxKillSessions.sh" "tmux-sessionizer.sh"; do
+        if [[ -f "$HOME/.config/tmux/$script" ]]; then
+            if [[ ! -x "$HOME/.config/tmux/$script" ]]; then
+                term_message cb "Making $script executable..."
+                if chmod +x "$HOME/.config/tmux/$script"; then
+                    term_message gb "$script is now executable."
+                else
+                    term_message rb "Failed to make $script executable."
+                fi
             else
-                term_message rb "Failed to make tmuxKillSessions.sh executable."
+                term_message yb "$script is already executable."
             fi
         else
-            term_message yb "tmuxKillSessions.sh is already executable."
+            term_message rb "$script not found in $HOME/.config/tmux. Please ensure the file exists."
         fi
+    done
+}
+
+install_tmux_plugin_manager() {
+    if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+        term_message cb "Installing Tmux Plugin Manager (TPM)..."
+        git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
     else
-        term_message rb "tmuxKillSessions.sh not found in $HOME/.config/tmux. Please ensure the file exists."
+        term_message yb "Tmux Plugin Manager (TPM) is already installed."
     fi
 }
 
@@ -262,7 +283,7 @@ main() {
     # Customise the following list variables (tap_list, term_list and cask_list) 
     # Leave list blank or comment out the list if not required.
     tap_list="nikitabobko/tap"
-    term_list="neovim tmux git gh awscli vercel-cli pnpm yarn nvm stow watchman starship fzf eza bat ripgrep"
+    term_list="neovim tmux git gh awscli vercel-cli pnpm yarn nvm stow watchman starship fzf eza bat ripgrep zsh-autosuggestions zoxide"
     cask_list="font-jetbrains-mono-nerd-font karabiner-elements ghostty nikitabobko/tap/aerospace gimp zulu@17"
     clear
     term_colors
@@ -272,9 +293,11 @@ main() {
     install_homebrew
     brew_packages
     brew_cleanup
+    fzf_post_install
     install_or_update_eas_cli
     stow_dotfiles
-    make_tmux_kill_sessions_executable
+    make_tmux_scripts_executable
+    install_tmux_plugin_manager
     term_message gb "\nScript completed."
     reminder_manual_installs
 }
