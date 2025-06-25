@@ -9,7 +9,7 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = ['layout accordion']
 
 # Start AeroSpace at login
 start-at-login = true
@@ -37,6 +37,7 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -136,8 +137,8 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-    # alt-1 = 'workspace 1'
-    # alt-2 = 'workspace 2'
+    alt-1 = 'workspace M'
+    alt-2 = 'workspace T'
     # alt-3 = 'workspace 3'
     # alt-4 = 'workspace 4'
     # alt-5 = 'workspace 5'
@@ -199,3 +200,10 @@ automatically-unhide-macos-hidden-apps = false
     down = 'volume down'
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
+
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+run = "move-node-to-workspace T"
+
+[[on-window-detected]]
+run = "move-node-to-workspace M"
