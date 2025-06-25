@@ -349,12 +349,17 @@ const rules: KarabinerRules[] = [
       ),
     }, */
    
+   // t = "Tmux"
+    t: {
+    },
+
+      // ghostty always at 0
+    0: app("Ghostty"),
     1: app("Safari"),
-    2: app("Ghostty"),
-    3: app("Visual Studio Code"),
-    4: app("Finder"),
-    5: app("System Settings"),
-    6: app("GIMP"),
+    2: app("Visual Studio Code"),
+    3: app("Finder"),
+    4: app("System Settings"),
+    5: app("GIMP"),
 
 
     // vim like navigation
