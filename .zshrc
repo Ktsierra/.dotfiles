@@ -150,7 +150,7 @@ if [ -f ~/.fzf.zsh ]; then
 
   # Eldritch Colorscheme / theme
   # https://github.com/eldritch-theme/fzf
-  export FZF_DEFAULT_OPTS='--color=fg:#ebfafa,bg:#09090d,hl:#37f499 --color=fg+:#ebfafa,bg+:#0D1116,hl+:#37f499 --color=info:#04d1f9,prompt:#04d1f9,pointer:#7081d0 --color=marker:#7081d0,spinner:#f7c67f,header:#323449'
+  export FZF_DEFAULT_OPTS='--color=fg:#ebfafa,bg:#212337,hl:#37f499 --color=fg+:#ffffff,bg+:#21222c,hl+:#37f499 --color=info:#04d1f9,prompt:#f265b5,pointer:#9071f4 --color=marker:#e9f941,spinner:#f16c75,header:#7081d0'
 fi
 
 # eza
@@ -178,4 +178,31 @@ if command -v bat &>/dev/null; then
   alias catt='bat --paging=never --style=plain'
   # alias cata='bat --show-all --paging=never'
   alias cata='bat --show-all --paging=never --style=plain'
+fi
+
+# Zsh Autosuggestions
+# Provides interactive suggestions based on command history and completions
+# https://github.com/zsh-users/zsh-autosuggestions
+# Right arrow to accept suggestion
+if [ -f "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# Changed from z.lua to zoxide, as it's more maintaned
+# smarter cd command, it remembers which directories you use most
+# frequently, so you can "jump" to them in just a few keystrokes.
+# https://github.com/ajeetdsouza/zoxide
+# https://github.com/skywind3000/z.lua
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+
+  alias cd='z'
+  # Alias below is same as 'cd -', takes to the previous directory
+  alias cdd='z -'
+
+  #Since I migrated from z.lua, I can import my data
+  # zoxide import --from=z "$HOME/.zlua" --merge
+
+  # Useful commands
+  # z foo<SPACE><TAB>  # show interactive completions
 fi
