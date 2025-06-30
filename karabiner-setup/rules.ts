@@ -349,9 +349,39 @@ const rules: KarabinerRules[] = [
       ),
     }, */
    
-   // t = "Tmux"
-    t: {
+   // x = "Tmux"
+    x: {
+      i: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt n`, //in accordance with next tab
+      u : shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt p`, // like previous tab
+      c: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt c`, // "create" a new tmux window
+      q: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt x`, // "quits" the current tmux window, rebinded from &
+      w: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt w`, // "w" list all tmux windows
+      s: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt s`, // "s" list all tmux sessions
+      r: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt ,`, // rename window
+      e: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt $`, // rename session
+      d: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt d`, // detach from current session
+      t: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt Q`, // reloads tmux config
+      1: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 1`, // switch to window 1
+      2: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 2`, // switch to window 2
+      3: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 3`, // switch to window 3
+      4: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 4`, // switch to window 4
+      5: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 5`, // switch to window 5
+      6: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 6`, // switch to window 6
+      7: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 7`, // switch to window 7
+      8: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 8`, // switch to window 8
+      9: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 9`, // switch to window 9
+      0: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 0`, // switch to window 0
+      //copy mode
+      "open_bracket": shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt [`, // enter copy mode
+      "close_bracket": shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt ]`, // paste from buffer_0
+      "semicolon": shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt :`, // tmux command prompt
     },
+  
+  // tmux sessionizer, layer z for specific sessions
+  spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt F`, // tmux sessionizer fzf
+  z : {
+    d: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt D`, // sessionize into dotfiles
+  },
 
       // ghostty always at 0
     0: app("Ghostty"),
@@ -360,6 +390,8 @@ const rules: KarabinerRules[] = [
     3: app("Finder"),
     4: app("System Settings"),
     5: app("GIMP"),
+    6: app("Firefox"),
+    9: app("LM Studio"),
 
 
     // vim like navigation
