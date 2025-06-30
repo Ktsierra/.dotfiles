@@ -43,5 +43,4 @@ confirm-close-surface = false
 # This assumes you installed tmux through brew if using macos
 # command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
 #
-# commented till sessionizer is working properly
-# command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then $HOME/.config/tmux/tmux-sessionizer.sh $HOME/.dotfiles || (tmux attach 2>/dev/null || tmux); else exec zsh; fi"
+command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then $HOME/.config/tmux/tmux-sessionizer.sh $HOME || (tmux attach 2>/dev/null || tmux); else exec zsh; fi"
