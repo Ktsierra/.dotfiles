@@ -206,3 +206,7 @@ if command -v zoxide &>/dev/null; then
   # Useful commands
   # z foo<SPACE><TAB>  # show interactive completions
 fi
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/ktsierra/.lmstudio/bin"
+# End of LM Studio CLI section
+
