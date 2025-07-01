@@ -3,7 +3,7 @@ on run
     activate
   end tell
 
-  delay 0.5 -- Give Ghostty a moment to open/activate
+  -- delay 0.5 -- Give Ghostty a moment to open/activate
 
   tell application "System Events"
     -- Send the tmux prefix (Ctrl-a)
