@@ -3441,6 +3441,30 @@
               {
                 "to": [
                   {
+                    "shell_command": "osascript ~/.config/tmux/scripts/tmux_controller.scpt l"
+                  }
+                ],
+                "description": "osascript ~/.config/tmux/scripts/tmux_controller.scpt l",
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_x",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
                     "shell_command": "osascript ~/.config/tmux/scripts/tmux_controller.scpt ["
                   }
                 ],
@@ -3784,6 +3808,30 @@
                 "type": "basic",
                 "from": {
                   "key_code": "d",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_z",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "osascript ~/.config/tmux/scripts/tmux_controller.scpt L"
+                  }
+                ],
+                "description": "osascript ~/.config/tmux/scripts/tmux_controller.scpt L",
+                "type": "basic",
+                "from": {
+                  "key_code": "spacebar",
                   "modifiers": {
                     "optional": [
                       "any"

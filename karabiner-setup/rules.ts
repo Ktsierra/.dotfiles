@@ -371,6 +371,7 @@ const rules: KarabinerRules[] = [
       8: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 8`, // switch to window 8
       9: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 9`, // switch to window 9
       0: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 0`, // switch to window 0
+      spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt l`, // switch between 2 windows (like alt+tab)
       //copy mode
       "open_bracket": shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt [`, // enter copy mode
       "close_bracket": shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt ]`, // paste from buffer_0
@@ -381,6 +382,7 @@ const rules: KarabinerRules[] = [
   spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt F`, // tmux sessionizer fzf
   z : {
     d: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt D`, // sessionize into dotfiles
+    spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt L`, // alternate 2 session( alt+tab) 
   },
 
       // ghostty always at 0
