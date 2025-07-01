@@ -382,6 +382,7 @@ const rules: KarabinerRules[] = [
   spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt F`, // tmux sessionizer fzf
   z : {
     d: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt D`, // sessionize into dotfiles
+    h: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt H`, // sessionize into home
     spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt L`, // alternate 2 session( alt+tab) 
   },
 

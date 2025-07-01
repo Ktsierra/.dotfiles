@@ -3825,6 +3825,30 @@
               {
                 "to": [
                   {
+                    "shell_command": "osascript ~/.config/tmux/scripts/tmux_controller.scpt H"
+                  }
+                ],
+                "description": "osascript ~/.config/tmux/scripts/tmux_controller.scpt H",
+                "type": "basic",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_z",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
                     "shell_command": "osascript ~/.config/tmux/scripts/tmux_controller.scpt L"
                   }
                 ],
