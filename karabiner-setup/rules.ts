@@ -379,7 +379,7 @@ const rules: KarabinerRules[] = [
     },
   
   // tmux sessionizer, layer z for specific sessions
-  spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt F`, // tmux sessionizer fzf
+  spacebar: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt`, // Open Ghostty and run tmux sessionizer
   z : {
     d: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt D`, // sessionize into dotfiles
     h: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt H`, // sessionize into home

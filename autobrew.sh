@@ -240,7 +240,7 @@ install_or_update_eas_cli() {
     fi
 }
 
-# make tmuxKillSessions.sh and tmux-sessionizer.sh executable
+# make tmuxKillSessions.sh, tmux-sessionizer.sh and applescripts executable
 make_tmux_scripts_executable() {
     for script in "tmuxKillSessions.sh" "tmux-sessionizer.sh"; do
         if [[ -f "$HOME/.config/tmux/$script" ]]; then
@@ -258,6 +258,25 @@ make_tmux_scripts_executable() {
             term_message rb "$script not found in $HOME/.config/tmux. Please ensure the file exists."
         fi
     done
+    
+    for script in "tmux_controller.scpt" "open_ghostty_and_sessionize.scpt"; do
+        if [[ -f "$HOME/.config/tmux/scripts/$script" ]]; then
+            if [[ ! -x "$HOME/.config/tmux/scripts/$script" ]]; then
+                term_message cb "Making $script executable..."
+                if chmod +x "$HOME/.config/tmux/scripts/$script"; then
+                    term_message gb "$script is now executable."
+                else
+                    term_message rb "Failed to make $script executable."
+                fi
+            else
+                term_message yb "$script is already executable."
+            fi
+        else
+            term_message rb "$script not found in $HOME/.config/tmux/scripts. Please ensure the file exists."
+        fi
+    done
+    term_message yb "Tmux scripts are now executable."
+    term_message yb "You can now use the tmux sessionizer and other scripts."
 }
 
 install_tmux_plugin_manager() {

@@ -3542,10 +3542,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "osascript ~/.config/tmux/scripts/tmux_controller.scpt F"
+                    "shell_command": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt"
                   }
                 ],
-                "description": "osascript ~/.config/tmux/scripts/tmux_controller.scpt F",
+                "description": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt",
                 "type": "basic",
                 "from": {
                   "key_code": "spacebar",
