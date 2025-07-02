@@ -1,4 +1,4 @@
-on run
+on run argv
   tell application "Ghostty"
     activate
   end tell
@@ -9,6 +9,6 @@ on run
     -- Send the tmux prefix (Ctrl-a)
     keystroke "a" using control down
     -- Send the key for sessionizer (F)
-    keystroke "F"
+    keystroke item 1 of argv
   end tell
 end run

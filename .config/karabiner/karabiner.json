@@ -3542,10 +3542,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt"
+                    "shell_command": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt F"
                   }
                 ],
-                "description": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt",
+                "description": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt F",
                 "type": "basic",
                 "from": {
                   "key_code": "spacebar",
@@ -3801,10 +3801,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "osascript ~/.config/tmux/scripts/tmux_controller.scpt D"
+                    "shell_command": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt D"
                   }
                 ],
-                "description": "osascript ~/.config/tmux/scripts/tmux_controller.scpt D",
+                "description": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt D",
                 "type": "basic",
                 "from": {
                   "key_code": "d",
@@ -3825,10 +3825,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "osascript ~/.config/tmux/scripts/tmux_controller.scpt H"
+                    "shell_command": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt H"
                   }
                 ],
-                "description": "osascript ~/.config/tmux/scripts/tmux_controller.scpt H",
+                "description": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt H",
                 "type": "basic",
                 "from": {
                   "key_code": "h",
@@ -3849,10 +3849,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "osascript ~/.config/tmux/scripts/tmux_controller.scpt L"
+                    "shell_command": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt L"
                   }
                 ],
-                "description": "osascript ~/.config/tmux/scripts/tmux_controller.scpt L",
+                "description": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt L",
                 "type": "basic",
                 "from": {
                   "key_code": "spacebar",
