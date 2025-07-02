@@ -183,8 +183,8 @@ format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
 
 [lua]
 symbol = ""
-style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:crust bg:teal)]($style)'
+style = "bg:lavender"
+format = '[[ $symbol( $version) ](fg:crust bg:lavender)]($style)'
 
 [cpp]
 symbol = ""
