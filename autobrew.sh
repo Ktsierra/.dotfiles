@@ -302,7 +302,7 @@ main() {
     # Customise the following list variables (tap_list, term_list and cask_list) 
     # Leave list blank or comment out the list if not required.
     tap_list="nikitabobko/tap sst/tap"
-    term_list="neovim tmux git gh awscli vercel-cli pnpm yarn nvm stow watchman starship fzf eza bat ripgrep zsh-autosuggestions zoxide opencode gemini-cli gcc make fd luarocks"
+    term_list="neovim tmux git gh awscli vercel-cli pnpm yarn nvm stow watchman starship fzf eza bat ripgrep zsh-autosuggestions zoxide opencode gemini-cli gcc make fd luarocks wget go" 
     cask_list="font-jetbrains-mono-nerd-font karabiner-elements ghostty nikitabobko/tap/aerospace gimp zulu@17 firefox lm-studio"
     clear
     term_colors
