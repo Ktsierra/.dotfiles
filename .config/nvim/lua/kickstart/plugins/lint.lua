@@ -7,6 +7,11 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
+        -- To use the linter eslint must be installed in the project using pnpm i eslint
+        javascript = { 'eslint' },
+        typescript = { 'eslint' },
+        javascriptreact = { 'eslint' },
+        typescriptreact = { 'eslint' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
@@ -55,6 +60,15 @@ return {
           end
         end,
       })
+
+      -- Add this after your existing lint autocmd
+      -- vim.api.nvim_create_autocmd('BufWritePre', {
+      --   pattern = { '*.js', '*.jsx', '*.ts', '*.tsx' },
+      --   callback = function()
+      --     vim.cmd('silent! !npx eslint --fix ' .. vim.fn.expand '%')
+      --     vim.cmd 'edit' -- Reload the buffer
+      --   end,
+      -- })
     end,
   },
 }
