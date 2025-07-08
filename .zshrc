@@ -210,3 +210,12 @@ fi
 export PATH="$PATH:/Users/ktsierra/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+# pnpm
+export PNPM_HOME="/Users/ktsierra/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+alias npm='pnpm'
+# pnpm end
