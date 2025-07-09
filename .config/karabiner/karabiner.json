@@ -3869,6 +3869,30 @@
                     "value": 1
                   }
                 ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt N"
+                  }
+                ],
+                "description": "osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt N",
+                "type": "basic",
+                "from": {
+                  "key_code": "n",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "hyper_sublayer_z",
+                    "value": 1
+                  }
+                ]
               }
             ]
           },

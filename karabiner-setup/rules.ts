@@ -4,7 +4,7 @@ import { createHyperSubLayers, app, open, window, shell } from "./utils";
 
 const rules: KarabinerRules[] = [
   // Define the Hyper key itself
-     {
+  {
     description: "Hyper Key (⌃⌥⇧⌘)",
     manipulators: [
       {
@@ -32,8 +32,8 @@ const rules: KarabinerRules[] = [
         ],
         to_if_alone: [
           {
-             key_code: "tab",
-             modifiers: ["right_command"]
+            key_code: "tab",
+            modifiers: ["right_command"],
           },
         ],
         type: "basic",
@@ -41,71 +41,71 @@ const rules: KarabinerRules[] = [
     ],
   },
 
-{
-  description: "Caps Lock -> Escape or Control",
-  manipulators: [
-    {
-      type: "basic",
-      from: {
-        key_code: "caps_lock",
-        modifiers: {
-          optional: ["any"]
-        }
+  {
+    description: "Caps Lock -> Escape or Control",
+    manipulators: [
+      {
+        type: "basic",
+        from: {
+          key_code: "caps_lock",
+          modifiers: {
+            optional: ["any"],
+          },
+        },
+        to_if_alone: [{ key_code: "escape" }],
+        to: [{ key_code: "left_control" }],
       },
-      to_if_alone: [{ key_code: "escape" }],
-      to: [{ key_code: "left_control" }],
-    }
-  ]
-},
+    ],
+  },
 
-{
-  description: "Left Command -> Command or Cmd + C if pressed alone",
-  manipulators: [
-    {
-      type: "basic",
-      from: {
-        key_code: "left_command"
+  {
+    description: "Left Command -> Command or Cmd + C if pressed alone",
+    manipulators: [
+      {
+        type: "basic",
+        from: {
+          key_code: "left_command",
+        },
+        to: [
+          {
+            key_code: "left_command",
+          },
+        ],
+        to_if_alone: [
+          {
+            key_code: "c",
+            modifiers: ["left_command"],
+          },
+        ],
       },
-      to: [
-        {
-          key_code: "left_command"
-        }
-      ],
-      to_if_alone: [
-        {
-          key_code: "c",
-          modifiers: ["left_command"]
-        }
-      ]
-    }
-  ]
-},
+    ],
+  },
 
-{
-  description: "Left Option -> Left Option or Cmd + V if pressed alone",
-  manipulators: [
-    {
-      type: "basic",
-      from: {
-        key_code: "left_option"
+  {
+    description: "Left Option -> Left Option or Cmd + V if pressed alone",
+    manipulators: [
+      {
+        type: "basic",
+        from: {
+          key_code: "left_option",
+        },
+        to: [
+          {
+            key_code: "left_option",
+          },
+        ],
+        to_if_alone: [
+          {
+            key_code: "v",
+            modifiers: ["left_command"],
+          },
+        ],
       },
-      to: [
-        {
-          key_code: "left_option"
-        }
-      ],
-      to_if_alone: [
-        {
-          key_code: "v",
-          modifiers: ["left_command"]
-        }
-      ]
-    }
-  ]
-},
+    ],
+  },
 
   ...createHyperSubLayers({
-/*     spacebar: open(
+    /*     spacebar: open(
       "raycast://extensions/stellate/mxstbr-commands/create-notion-todo"
     ), */
     // b = "B"rowse
@@ -129,9 +129,8 @@ const rules: KarabinerRules[] = [
       k: app("Karabiner-Elements"),
       a: app("AeroSpace"),
       p: app("Launchpad"),
-      d: app("Android Studio"), 
-      i: app("iPhone Mirroring")
-      
+      d: app("Android Studio"),
+      i: app("iPhone Mirroring"),
     },
 
     // w = "Window"
@@ -199,7 +198,7 @@ const rules: KarabinerRules[] = [
             key_code: "tab",
             modifiers: ["right_control", "right_shift"],
           },
-      ],
+        ],
       },
       i: {
         description: "Window: Next Tab", // for browsers and terminal
@@ -208,7 +207,7 @@ const rules: KarabinerRules[] = [
             key_code: "tab",
             modifiers: ["right_control"],
           },
-      ],
+        ],
       },
       n: {
         description: "Window: Next Window", // same app next window, for several terminals or browsers windows
@@ -246,7 +245,7 @@ const rules: KarabinerRules[] = [
             modifiers: ["right_option"],
           },
         ],
-      }
+      },
     },
 
     // s = "System"
@@ -324,9 +323,9 @@ const rules: KarabinerRules[] = [
         to: [{ key_code: "rewind" }],
       },
     },
-    
+
     // r = "Raycast"
-/*     r: {
+    /*     r: {
       c: open("raycast://extensions/thomas/color-picker/pick-color"),
       n: open("raycast://script-commands/dismiss-notifications"),
       l: open(
@@ -348,11 +347,11 @@ const rules: KarabinerRules[] = [
         "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2"
       ),
     }, */
-   
-   // x = "Tmux"
+
+    // x = "Tmux"
     x: {
       i: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt n`, //in accordance with next tab
-      u : shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt p`, // like previous tab
+      u: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt p`, // like previous tab
       c: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt c`, // "create" a new tmux window
       q: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt x`, // "quits" the current tmux window, rebinded from &
       w: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt w`, // "w" list all tmux windows
@@ -373,22 +372,23 @@ const rules: KarabinerRules[] = [
       0: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 0`, // switch to window 0
       spacebar: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt F`, // switch between 2 windows (like alt+tab)
       //copy mode
-      "open_bracket": shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt [`, // enter copy mode
-      "close_bracket": shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt ]`, // paste from buffer_0
-      "semicolon": shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt :`, // tmux command prompt
+      open_bracket: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt [`, // enter copy mode
+      close_bracket: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt ]`, // paste from buffer_0
+      semicolon: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt :`, // tmux command prompt
     },
-  
-  // tmux sessionizer, layer z for specific sessions
-  spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt l`, // Open Ghostty and run tmux sessionizer
-  
-  // z = "Sessionize" into Ghostty
-  z : {
-    d: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt D`, // sessionize into dotfiles
-    h: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt H`, // sessionize into home
-    spacebar: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt L`, // alternate 2 session( alt+tab) 
-  },
 
-      // ghostty always at 0
+    // tmux sessionizer, layer z for specific sessions
+    spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt l`, // Open Ghostty and run tmux sessionizer
+
+    // z = "Sessionize" into Ghostty
+    z: {
+      d: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt D`, // sessionize into dotfiles
+      h: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt H`, // sessionize into home
+      spacebar: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt L`, // alternate 2 session( alt+tab)
+      n: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt N`, // sessionize into nvim config
+    },
+
+    // ghostty always at 0
     0: app("Ghostty"),
     1: app("Safari"),
     2: app("Visual Studio Code"),
@@ -397,7 +397,6 @@ const rules: KarabinerRules[] = [
     5: app("GIMP"),
     6: app("Firefox"),
     9: app("LM Studio"),
-
 
     // vim like navigation
     h: {
