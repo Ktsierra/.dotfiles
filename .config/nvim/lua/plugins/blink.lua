@@ -2,6 +2,7 @@ return {
   'saghen/blink.cmp',
   event = 'VimEnter',
   version = '1.*',
+  completion = { accept = { auto_brackets = { enabled = true } } }, -- iwindwp/nvim-autopairs integrations
   dependencies = {
     -- Snippet Engine
     {
@@ -75,7 +76,7 @@ return {
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev' },
+      default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
       },
@@ -90,7 +91,7 @@ return {
     -- the rust implementation via `'prefer_rust_with_warning'`
     --
     -- See :h blink-cmp-config-fuzzy for more information
-    fuzzy = { implementation = 'lua' },
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
 
     -- Shows a signature help window while you type arguments for a function
     signature = { enabled = true },

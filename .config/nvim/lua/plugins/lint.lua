@@ -60,15 +60,6 @@ return {
           end
         end,
       })
-
-      -- Add this after your existing lint autocmd
-      -- vim.api.nvim_create_autocmd('BufWritePre', {
-      --   pattern = { '*.js', '*.jsx', '*.ts', '*.tsx' },
-      --   callback = function()
-      --     vim.cmd('silent! !npx eslint --fix ' .. vim.fn.expand '%')
-      --     vim.cmd 'edit' -- Reload the buffer
-      --   end,
-      -- })
     end,
   },
 }

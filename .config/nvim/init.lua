@@ -21,6 +21,9 @@ require 'keymaps'
 -- Sets up autocommands ( like highlight on yank)
 require 'autocommands'
 
+-- LSP settings
+require 'lsp'
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -108,9 +111,12 @@ require('lazy').setup({
   require 'plugins.gitsigns', -- adds gitsigns recommend keymaps
   require 'plugins.oil',
 
+  -- Dashboard Setup
+  require 'plugins.dashboard',
+
   -- Themes and Colorschemes
   require 'theme.eldritch',
-  -- require 'theme.tokyonight',
+  require 'theme.tokyonight',
 
   -- Unused Plugins
   -- require 'plugins.neo-tree',

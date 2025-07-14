@@ -1,5 +1,4 @@
-return 
-{ -- Fuzzy Finder (files, lsp, etc)
+return { -- Fuzzy Finder (files, lsp, etc)
   'nvim-telescope/telescope.nvim',
   event = 'VimEnter',
   dependencies = {
@@ -78,11 +77,13 @@ return
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
+    -- Colorpicker ui
+    vim.keymap.set('n', '<leader>tc', ':Telescope colorscheme<CR>', { desc = 'Pick colorscheme with Telescope' })
+
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.
       builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        winblend = 10,
         previewer = false,
       })
     end, { desc = '[/] Fuzzily search in current buffer' })

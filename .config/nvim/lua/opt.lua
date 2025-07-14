@@ -9,8 +9,13 @@
 --  Experiment for yourself to see if you like it!
 vim.o.relativenumber = true
 
+-- Don't add EOL
+vim.o.fixeol = false
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
+
+vim.o.cursorlineopt = 'number'
 
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
@@ -70,3 +75,12 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+-- Sets identation rules for nvim
+-- this is just how i like it
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+vim.o.autoindent = true
+vim.o.smartindent = true

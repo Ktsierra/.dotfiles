@@ -2,9 +2,8 @@ return {
   'eldritch-theme/eldritch.nvim',
   lazy = false,
   priority = 1000,
-  opts = {},
+  -- opts = {},
   config = function()
-    ---@diagnostic disable-next-line: missing-fields
     require('eldritch').setup {
       transparent = true,
       styles = {
