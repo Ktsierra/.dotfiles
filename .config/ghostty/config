@@ -22,8 +22,10 @@ mouse-hide-while-typing = true
 
 # Window settings for ghostty
 window-decoration = false
-# window-padding-x = 5,0
-# window-padding-y = 10,0
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = true
+window-padding-color = extend
 macos-titlebar-style = hidden
 link-url = true
 confirm-close-surface = false
