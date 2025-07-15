@@ -219,3 +219,6 @@ case ":$PATH:" in
 esac
 alias npm='pnpm'
 # pnpm end
+
+# Editor config
+export EDITOR=nvim
