@@ -15,6 +15,7 @@ vim.o.fixeol = false
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
+-- Highlights the cursor number line
 vim.o.cursorlineopt = 'number'
 
 -- Don't show the mode, since it's already in the status line
@@ -64,9 +65,6 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10

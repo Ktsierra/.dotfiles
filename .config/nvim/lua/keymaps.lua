@@ -43,3 +43,6 @@ set('n', '<leader>X', '<CMD>source % | echo "Sourced " . expand("%")<CR>', { des
 
 -- Lazy
 set('n', '<leader>l', '<CMD>Lazy<CR>', { desc = 'Lazy Menu' })
+
+-- Mason
+set('n', '<leader>m', '<CMD>Mason<CR>', { desc = 'Mason Menu' })

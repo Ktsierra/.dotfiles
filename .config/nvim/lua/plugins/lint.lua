@@ -6,12 +6,28 @@ return {
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
+        lua = { 'luacheck' },
         markdown = { 'markdownlint-cli2' },
         -- To use the linter eslint must be installed in the project using pnpm i eslint
         javascript = { 'eslint_d' },
         typescript = { 'eslint_d' },
         javascriptreact = { 'eslint_d' },
         typescriptreact = { 'eslint_d' },
+      }
+
+      lint.linters.luacheck = {
+        cmd = 'luacheck',
+        stdin = true,
+        args = {
+          '--globals',
+          'vim',
+          'lvim',
+          'reload',
+          '--', -- Add your custom globals here
+        },
+        stream = 'stdout',
+        ignore_exitcode = true,
+        parser = require('lint.parser').from_errorformat('%f:%l:%c: %m', { source = 'luacheck' }),
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
