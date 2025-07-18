@@ -81,7 +81,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
     -- Colorpicker ui
-    vim.keymap.set('n', '<leader>tc', ':Telescope colorscheme<CR>', { desc = 'Pick colorscheme with Telescope' })
+    vim.keymap.set('n', '<leader>sc', ':Telescope colorscheme<CR>', { desc = '[S]earch [C]olorscheme' })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()

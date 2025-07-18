@@ -80,8 +80,10 @@ require('lazy').setup({
   -- Which-key visual helper
   require 'plugins.which-key',
 
-  -- Telescope fzf
+  -- Navigation
   require 'plugins.telescope',
+  require 'plugins.harpoon2',
+  require 'plugins.snacks',
 
   -- LSP
   require 'lsp.nvim-lspconfig',
@@ -95,6 +97,7 @@ require('lazy').setup({
 
   -- Formatters
   require 'plugins.conform',
+  require 'plugins.autotag',
 
   -- Linters
   require 'plugins.guess-ident',
