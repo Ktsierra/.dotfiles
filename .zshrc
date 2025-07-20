@@ -222,3 +222,13 @@ alias npm='pnpm'
 
 # Editor config
 export EDITOR=nvim
+
+# nvim alias
+alias vim='nvim'
+alias vi='nvim'
+alias n='nvim'
+alias nivm='nvim'
+alias nv='nvim'
+
+# lazygit alias
+alias lg='lazygit'
