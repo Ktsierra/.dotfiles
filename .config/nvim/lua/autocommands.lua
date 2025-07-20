@@ -19,3 +19,14 @@ vim.api.nvim_create_autocmd({ 'CursorHold' }, {
     vim.diagnostic.open_float(nil, { focusable = false })
   end,
 })
+
+vim.api.nvim_create_autocmd('BufLeave', {
+  desc = 'Auto-save when leaving a modified buffer',
+  group = vim.api.nvim_create_augroup('auto-save-on-buf-leave', { clear = true }),
+  pattern = '*',
+  callback = function()
+    if vim.bo.modified and vim.bo.buftype == '' then
+      vim.cmd.write()
+    end
+  end,
+})

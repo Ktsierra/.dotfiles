@@ -29,6 +29,9 @@ This is my personal Neovim configuration, built upon `kickstart.nvim` and extend
 - **Syntax Highlighting:** `nvim-treesitter` for accurate and fast syntax highlighting and structural editing.
 - **Custom Themes:** Includes "Eldritch" and "Tokyonight" themes for a personalized visual experience.
 - **Intuitive Keymaps:** Custom keybindings for common tasks, including LSP actions, window navigation, and plugin-specific functions.
+- **Quality of Life Improvements:**
+  - **Command Aliases:** Common typos like `:W` and `:Q` are automatically corrected to `:w` and `:q`.
+  - **Auto-save on Buffer Change:** Files are automatically saved when switching buffers, streamlining workflows that use Telescope or Harpoon.
 
 ## Installation
 

@@ -21,6 +21,9 @@ require 'keymaps'
 -- Sets up autocommands ( like highlight on yank)
 require 'autocommands'
 
+-- Sets up commands (like :W for :w)
+require 'commands'
+
 -- LSP settings
 
 -- [[ Install `lazy.nvim` plugin manager ]]
