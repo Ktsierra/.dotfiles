@@ -3,7 +3,7 @@
 
 return {
   'windwp/nvim-autopairs',
-  event = 'InsertEnter',
+  event = 'VeryLazy',
   config = true,
   opts = {},
 }

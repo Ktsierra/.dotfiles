@@ -13,7 +13,7 @@ function M.opts(capabilities)
 
       -- Settings for auto-closing JSX tags
       jsx_close_tag = {
-        enable = false,
+        enable = true,
         filetypes = { 'javascriptreact', 'typescriptreact' },
       },
 

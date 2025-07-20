@@ -1,6 +1,9 @@
 return {
   'windwp/nvim-ts-autotag',
-  opts = {
-    enable_close_on_slash = true,
-  },
+  event = 'VeryLazy',
+  config = function()
+    require('nvim-ts-autotag').setup {
+      enable_close_on_slash = true,
+    }
+  end,
 }

@@ -1,6 +1,6 @@
 return {
   'saghen/blink.cmp',
-  event = 'VimEnter',
+  event = 'VeryLazy',
   version = '1.*',
   completion = { accept = { auto_brackets = { enabled = true } } }, -- iwindwp/nvim-autopairs integrations
   dependencies = {
@@ -29,6 +29,21 @@ return {
         },
       },
       opts = {},
+      config = function(_, opts)
+        local ls = require 'luasnip' -- Define ls here for keymaps
+        require('completion.custom-snippets').add_snippets()
+        ls.config.setup(opts)
+        vim.keymap.set({ 'i', 's' }, '<C-e>', function()
+          if ls.expand_or_jumpable() then
+            ls.expand_or_jump()
+          end
+        end, { silent = true })
+        vim.keymap.set({ 'i', 's' }, '<C-q>', function()
+          if ls.jumpable(-1) then
+            ls.jump(-1)
+          end
+        end, { silent = true })
+      end,
     },
     'folke/lazydev.nvim',
   },

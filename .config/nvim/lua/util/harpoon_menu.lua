@@ -1,4 +1,5 @@
 local M = {}
+local harpoon_utils = require("util.harpoon_utils")
 
 function M.delete_menu()
   local list = require('harpoon'):list()
@@ -34,6 +35,7 @@ function M.delete_menu()
         vim.keymap.set('n', tostring(i), function()
           list:remove_at(i)
           vim.notify(string.format('Removed "%s" from Harpoon list.', filename))
+          harpoon_utils.update_harpoon_keymaps()
           close_win()
         end, { buffer = buf, nowait = true, silent = true })
       end

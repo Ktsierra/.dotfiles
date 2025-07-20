@@ -18,7 +18,8 @@ logo = string.rep('\n', 2) .. logo
 
 return {
   'nvimdev/dashboard-nvim',
-  event = 'VimEnter',
+  priority = 1000,
+  -- event = 'VimEnter',
   config = function()
     require('dashboard').setup {
       theme = 'hyper',

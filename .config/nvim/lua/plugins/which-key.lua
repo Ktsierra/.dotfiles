@@ -14,7 +14,7 @@ return
 -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 { -- Useful plugin to show you pending keybinds.
   'folke/which-key.nvim',
-  event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+  event = 'VeryLazy', -- Sets the loading event to 'VimEnter'
   opts = {
     -- delay between pressing a key and opening which-key (milliseconds)
     -- this setting is independent of vim.o.timeoutlen

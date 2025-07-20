@@ -95,9 +95,12 @@ require('lazy').setup({
   -- Autocompletion
   require 'plugins.blink',
 
+  -- AI
+  require 'plugins.ai.copilot',
+
   -- Formatters
   require 'plugins.conform',
-  require 'plugins.autotag',
+  -- require 'plugins.autotag',
 
   -- Linters
   require 'plugins.guess-ident',
