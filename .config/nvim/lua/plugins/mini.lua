@@ -63,6 +63,9 @@ return { -- Collection of various small independent plugins/modules
         -- Highlight hex color strings (`#rrggbb`) using that color
         hex_color = hipatterns.gen_highlighter.hex_color(),
       },
+
+      -- Icons for oil.nvim
+      require('mini.icons').setup {},
     }
   end,
 }

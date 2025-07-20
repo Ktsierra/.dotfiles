@@ -2,7 +2,6 @@ return {
   {
     'stevearc/oil.nvim',
     event = 'VeryLazy',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       CustomOilBar = function()
         local path = vim.fn.expand '%'
