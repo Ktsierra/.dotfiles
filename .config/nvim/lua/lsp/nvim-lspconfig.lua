@@ -173,6 +173,7 @@ return {
     local servers = {
       jsonls = {},
       tailwindcss = {},
+      pyright = {},
 
       lua_ls = {
         -- cmd = { ... },
@@ -190,6 +191,7 @@ return {
       },
     }
 
+    -- After adding new run :MasonToolsInstall to install the new tools
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
