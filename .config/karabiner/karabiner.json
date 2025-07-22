@@ -905,10 +905,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a 'Firefox.app'"
+                    "shell_command": "open -a 'LM Studio.app'"
                   }
                 ],
-                "description": "Open -a 'Firefox.app'",
+                "description": "Open -a 'LM Studio.app'",
                 "type": "basic",
                 "from": {
                   "key_code": "6",
@@ -1034,10 +1034,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a 'LM Studio.app'"
+                    "shell_command": "open -a 'Firefox.app'"
                   }
                 ],
-                "description": "Open -a 'LM Studio.app'",
+                "description": "Open -a 'Firefox.app'",
                 "type": "basic",
                 "from": {
                   "key_code": "9",

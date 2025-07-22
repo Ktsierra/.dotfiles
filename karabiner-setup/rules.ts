@@ -395,8 +395,8 @@ const rules: KarabinerRules[] = [
     3: app("Finder"),
     4: app("System Settings"),
     5: app("GIMP"),
-    6: app("Firefox"),
-    9: app("LM Studio"),
+    6: app("LM Studio"),
+    9: app("Firefox"),
 
     // vim like navigation
     h: {
