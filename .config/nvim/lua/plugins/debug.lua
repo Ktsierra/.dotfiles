@@ -1,17 +1,12 @@
--- debug.lua
---
--- Shows how to use the DAP plugin to debug your code.
---
--- Primarily focused on configuring the debugger for Go, but can
--- be extended to other languages as well. That's why it's called
--- kickstart.nvim and not kitchen-sink.nvim ;)
-
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
   event = 'VeryLazy',
   -- NOTE: And you can specify dependencies as well
   dependencies = {
+    -- Virtual text
+    'theHamsta/nvim-dap-virtual-text',
+
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
 
@@ -24,9 +19,11 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+
+    -- Telescope for nice floating windows
+    'nvim-telescope/telescope.nvim',
   },
   keys = {
-    -- Basic debugging keymaps, feel free to change to your liking!
     {
       '<F5>',
       function()
@@ -82,6 +79,9 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    -- Sets up virtual text for DAP
+    require('nvim-dap-virtual-text').setup {}
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
@@ -96,42 +96,80 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'js-debug-adapter',
+        'firefox-debug-adapter',
       },
     }
 
-    -- Dap UI setup
-    -- For more information, see |:help nvim-dap-ui|
-    dapui.setup {
-      -- Set icons to characters that are more likely to work in every terminal.
-      --    Feel free to remove or use ones that you like more! :)
-      --    Don't feel like these are good choices.
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-      controls = {
-        icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
+    -- Add the missing pwa-node adapter (needed for Metro/Node apps)
+    require('dap').adapters['pwa-node'] = {
+      type = 'server',
+      host = 'localhost',
+      port = '${port}',
+      executable = {
+        command = 'node',
+        -- 💀 Make sure to update this path to point to your installation
+        args = { os.getenv 'HOME' .. '/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js', '${port}' },
+      },
+    }
+
+    dap.adapters.firefox = {
+      type = 'executable',
+      command = 'node',
+      args = { os.getenv 'HOME' .. '/.local/share/nvim/mason/packages/firefox-debug-adapter/dist/adapter.bundle.js' },
+    }
+
+    -- Add configurations for javascript/typescript files
+    dap.configurations.javascript = {
+      {
+        type = 'pwa-node',
+        request = 'attach',
+        name = 'Attach to Metro (React Native)',
+        cwd = vim.fn.getcwd(),
+        port = 8081, -- Default Metro port
+        sourceMaps = true,
+        protocol = 'inspector',
+        console = 'integratedTerminal',
+      },
+      {
+        name = 'Debug Vite React App (Firefox)',
+        type = 'firefox',
+        request = 'launch',
+        reAttach = true,
+        url = 'http://localhost:5173',
+        webRoot = '${workspaceFolder}/src',
+        pathMappings = {
+          {
+            url = 'http://localhost:5173',
+            path = '${workspaceFolder}',
+          },
+        },
+        skipFiles = {
+          '<node_internals>/**',
+          'node_modules/**',
         },
       },
     }
 
+    dap.configurations.typescript = dap.configurations.javascript
+    dap.configurations.typescriptreact = dap.configurations.javascript
+    dap.configurations.javascriptreact = dap.configurations.javascript
+
+    -- Dap UI setup
+    -- For more information, see |:help nvim-dap-ui|
+    dapui.setup {}
+
     -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-    -- local breakpoint_icons = vim.g.have_nerd_font
-    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-    -- for type, icon in pairs(breakpoint_icons) do
-    --   local tp = 'Dap' .. type
-    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-    -- end
+    vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
+    vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+    local breakpoint_icons = vim.g.have_nerd_font
+        and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+      or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+    for type, icon in pairs(breakpoint_icons) do
+      local tp = 'Dap' .. type
+      local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    end
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
