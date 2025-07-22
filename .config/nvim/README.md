@@ -87,6 +87,16 @@ Here are some of the notable keybindings:
 
 For a complete list of keybindings, refer to `lua/keymaps.lua` and the documentation of individual plugins.
 
+### Debugging
+
+- `<F5>`: Start or continue debugging.
+- `<F6>`: Pause debugging.
+- `<F7>`: Step over.
+- `<F8>`: Step into.
+- `<F9>`: Step out.
+- `<leader>b`: Toggle breakpoint.
+- `<leader>B`: Set a conditional breakpoint.
+
 ## Plugins
 
 This configuration uses `lazy.nvim` to manage plugins. Key plugins include:
@@ -119,9 +129,10 @@ This configuration uses `lazy.nvim` to manage plugins. Key plugins include:
 - **`nvim-neo-tree/neo-tree.nvim`**: A file explorer tree.
 - **`mfussenegger/nvim-dap`**: Debug Adapter Protocol implementation.
 - **`rcarriga/nvim-dap-ui`**: A UI for `nvim-dap`.
-- **`williamboman/mason.nvim`**: (Already listed, but confirming its role in debugging).
-- **`mrcjkb/haskell-tools.nvim`**: (This seems to be a dependency of your debug setup).
+- **`theHamsta/nvim-dap-virtual-text`**: Displays debug information inline.
 - **`jay-babu/mason-nvim-dap.nvim`**: Integrates `nvim-dap` with `mason.nvim`.
+- **`leoluz/nvim-dap-go`**: Debugger for Go.
+- **`nvim-telescope/telescope.nvim`**: (Dependency for DAP UI).
 - **`isak102/config-local.nvim`**: Local configuration loader.
 - **`folke/neoconf.nvim`**: Project-local configuration management.
 - **`folke/neodev.nvim`**: Development environment for Neovim plugins.

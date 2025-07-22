@@ -93,6 +93,7 @@ My `.zshrc` and `.zprofile` are configured for a powerful and efficient terminal
 
 - **Lazy.nvim:**  Plugin manager for Neovim.
 - **LSP:** Configured with `nvim-lspconfig`, `mason.nvim`, and `typescript-tools.nvim` for a rich development experience.
+- **Debugging:** Enhanced with `nvim-dap` to support JavaScript/TypeScript debugging for Node.js, React Native, and web applications via Firefox.
 - **Completion:** Uses `blink.cmp` for autocompletion.
 - **Formatting and Linting:** `conform.nvim` and `nvim-lint` are used for code formatting and linting.
 - **UI:** `dashboard-nvim` provides a startup screen, and `mini.nvim` provides various UI enhancements.
