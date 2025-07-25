@@ -1,12 +1,15 @@
 return {
   -- Main LSP configuration
   'neovim/nvim-lspconfig',
+  -- event = { 'BufReadPre', 'BufNewFile' },
   event = 'VeryLazy',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     { 'mason-org/mason.nvim', opts = {} },
-    'mason-org/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    { 'mason-org/mason-lspconfig.nvim', opts = {} },
+    { 'WhoIsSethDaniel/mason-tool-installer.nvim', event = 'VimEnter' },
+    'b0o/SchemaStore.nvim',
+    'saghen/blink.cmp',
 
     -- Provides a suite of tools for TypeScript development
     {
@@ -171,7 +174,14 @@ return {
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
-      jsonls = {},
+      jsonls = {
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      },
       tailwindcss = {},
       pyright = {},
 
@@ -191,6 +201,11 @@ return {
       },
     }
 
+    for server_name, server_config in pairs(servers) do
+      server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
+      require('lspconfig')[server_name].setup(server_config)
+    end
+
     -- After adding new run :MasonToolsInstall to install the new tools
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
@@ -201,17 +216,5 @@ return {
       'prettierd',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-    require('mason-lspconfig').setup {
-      ensure_installed = {}, -- explicitly set to an empty table (installs via mason-tool-installer)
-      automatic_installation = false,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-    }
   end,
 }

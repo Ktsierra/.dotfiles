@@ -121,15 +121,54 @@ return {
 
     -- Add configurations for javascript/typescript files
     dap.configurations.javascript = {
+      -- React Native Debugging Workflow (SDK 53)
+      --
+      -- IMPORTANT: Both React Native DevTools and nvim-dap need source maps, but they expect
+      -- different Metro server configurations. Here's the workflow to make both work:
+      --
+      -- 1. `expo run:ios` - Builds app with Hermes bytecode, generates source maps for DevTools
+      -- 2. Kill Metro server (Ctrl+C)
+      -- 3. `expo start` - Starts dev server that serves source maps in nvim-dap compatible format
+      -- 4. Refresh app in simulator
+      -- 5. Launch debugger below to attach
+      --
+      -- WHY THIS WORKS:
+      -- - run:ios creates compiled bundle + source maps (DevTools can read these)
+      -- - expo start serves those same maps through dev server (nvim-dap can read these)
+      -- - App keeps compiled version but gets debugging from dev server
+      -- - Only 1 debugger active at time (RN limitation)
+      --
+      -- TL;DR: Need run:ios THEN expo start for both debugging tools to have source maps
+      -- Both configs for RN works, the simple is the one used before compiling the app, then use the advanced one
       {
         type = 'pwa-node',
         request = 'attach',
-        name = 'Attach to Metro (React Native)',
-        cwd = vim.fn.getcwd(),
-        port = 8081, -- Default Metro port
+        name = 'Debug React Native App (Advanced Setup)',
+        port = 8081,
+        address = 'localhost',
+        localRoot = '${workspaceFolder}',
+        remoteRoot = '${workspaceFolder}',
         sourceMaps = true,
+        skipFiles = {
+          '<node_internals>/**',
+          'node_modules/**',
+          '**/node_modules/undici/**',
+          '**/node_modules/typescript/**',
+          '**/node_modules/@expo/**',
+          '**/*.bundle.js',
+          '**/*.min.js',
+        },
+        -- Connect via WebSocket protocol used by React Native
         protocol = 'inspector',
-        console = 'integratedTerminal',
+        timeout = 30000,
+      },
+      {
+        type = 'pwa-node',
+        request = 'attach',
+        name = 'Debug React Native App (Simple Setup)',
+        cwd = '${workspaceFolder}',
+        port = 8081,
+        sourceMaps = true,
       },
       {
         name = 'Debug Vite React App (Firefox)',
