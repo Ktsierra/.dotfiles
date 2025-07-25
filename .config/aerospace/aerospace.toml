@@ -206,4 +206,12 @@ if.app-id = "com.mitchellh.ghostty"
 run = "move-node-to-workspace T"
 
 [[on-window-detected]]
+if.app-id = "com.apple.iphonesimulator"
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.app-id = "com.google.Chrome"
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
 run = "move-node-to-workspace M"
