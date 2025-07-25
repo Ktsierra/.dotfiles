@@ -396,6 +396,7 @@ const rules: KarabinerRules[] = [
     4: app("System Settings"),
     5: app("GIMP"),
     6: app("LM Studio"),
+    7: app("Simulator"),
     9: app("Firefox"),
 
     // vim like navigation
