@@ -16,13 +16,20 @@ vim.api.nvim_create_autocmd({ 'CursorHold' }, {
   desc = 'Diagnostics description on hover',
   group = vim.api.nvim_create_augroup('diagnostic-hover', { clear = true }),
   callback = function()
-    vim.diagnostic.open_float(nil, { focusable = false })
+    vim.diagnostic.open_float(
+      nil,
+      {
+        focusable = false,
+        scope = 'cursor',
+        close_events = { 'CursorMoved', 'CursorMovedI', 'BufLeave', 'BufHidden', 'InsertCharPre', 'WinLeave', 'InsertEnter' },
+      }
+    )
   end,
 })
 
 vim.api.nvim_create_autocmd('BufLeave', {
   desc = 'Auto-save when leaving a modified buffer',
-  group = vim.api.nvim_create_augroup('auto-save-on-buf-leave', { clear = true }),
+  group = vim.api.nvim_create_augroup('buffer_leave_events', { clear = true }),
   pattern = '*',
   callback = function()
     if vim.bo.modified and vim.bo.buftype == '' then
