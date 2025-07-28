@@ -185,6 +185,26 @@ return {
       tailwindcss = {},
       pyright = {},
 
+      eslint = {
+        settings = {
+          format = false, -- Disable formatting (you use conform)
+          experimental = {
+            useFlatConfig = true, -- For eslint.config.mjs support
+          },
+          workingDirectory = { mode = 'auto' },
+        },
+        on_attach = function(client)
+          -- Disable everything except code actions
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+          client.server_capabilities.publishDiagnostics = false -- Disable since you use nvim-lint
+        end,
+        root_dir = function(fname)
+          local util = require 'lspconfig.util'
+          return util.root_pattern('eslint.config.mjs', 'eslint.config.js', '.eslintrc.js', '.eslintrc.json', 'package.json')(fname) or vim.fs.dirname(fname)
+        end,
+      },
+
       lua_ls = {
         -- cmd = { ... },
         -- filetypes = { ... },
