@@ -84,9 +84,9 @@ require('lazy').setup({
   require 'plugins.which-key',
 
   -- Navigation
+  require 'plugins.snacks',
   require 'plugins.telescope',
   require 'plugins.harpoon2',
-  require 'plugins.snacks',
 
   -- LSP
   require 'lsp.nvim-lspconfig',

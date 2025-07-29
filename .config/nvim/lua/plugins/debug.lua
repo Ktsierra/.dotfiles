@@ -19,9 +19,6 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
-
-    -- Telescope for nice floating windows
-    'nvim-telescope/telescope.nvim',
   },
   keys = {
     {
@@ -139,7 +136,7 @@ return {
       -- - Only 1 debugger active at time (RN limitation)
       --
       -- NOTE: nvim-dap might disconnect the first time you run it with DevTools open,
-      -- thats just how it works. Devtools will disconnect too, you can safely recconect using
+      -- thats just how it works. Devtools will disconnect too,w you can safely recconect using
       -- nvim-dap. Make sure to reload your app if this happens.
       --
       -- TL;DR: Need run:ios THEN expo start for both debugging tools to have source maps

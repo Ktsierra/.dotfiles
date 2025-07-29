@@ -2,7 +2,7 @@ return {
   -- lazy.nvim
   {
     'folke/snacks.nvim',
-    event = 'VeryLazy',
+    event = 'UIEnter',
     ---@type snacks.Config
     opts = {
       styles = {
