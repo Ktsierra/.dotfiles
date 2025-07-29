@@ -150,6 +150,9 @@ return {
         source = 'if_many',
         spacing = 2,
         format = function(diagnostic)
+          if diagnostic.source == 'eslint' then
+            return nil -- Filter out eslint diagnostics
+          end
           local diagnostic_message = {
             [vim.diagnostic.severity.ERROR] = diagnostic.message,
             [vim.diagnostic.severity.WARN] = diagnostic.message,
@@ -187,17 +190,16 @@ return {
 
       eslint = {
         settings = {
-          format = false, -- Disable formatting (you use conform)
+          format = false,
           experimental = {
-            useFlatConfig = true, -- For eslint.config.mjs support
+            useFlatConfig = true,
           },
           workingDirectory = { mode = 'auto' },
         },
         on_attach = function(client)
-          -- Disable everything except code actions
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
-          client.server_capabilities.publishDiagnostics = false -- Disable since you use nvim-lint
+          client.server_capabilities.publishDiagnostics = false
         end,
         root_dir = function(fname)
           local util = require 'lspconfig.util'
@@ -205,20 +207,20 @@ return {
         end,
       },
 
-      lua_ls = {
-        -- cmd = { ... },
-        -- filetypes = { ... },
-        -- capabilities = {},
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = 'Replace',
-            },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
-          },
-        },
-      },
+      -- lua_ls = {
+      --   -- cmd = { ... },
+      --   -- filetypes = { ... },
+      --   -- capabilities = {},
+      --   settings = {
+      --     Lua = {
+      --       completion = {
+      --         callSnippet = 'Replace',
+      --       },
+      --       -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+      --       -- diagnostics = { disable = { 'missing-fields' } },
+      --     },
+      --   },
+      -- },
     }
 
     for server_name, server_config in pairs(servers) do
