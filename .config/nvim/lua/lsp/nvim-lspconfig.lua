@@ -6,7 +6,7 @@ return {
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     { 'mason-org/mason.nvim', opts = {} },
-    { 'mason-org/mason-lspconfig.nvim', opts = {} },
+    { 'mason-org/mason-lspconfig.nvim' },
     { 'WhoIsSethDaniel/mason-tool-installer.nvim', event = 'VimEnter' },
     'b0o/SchemaStore.nvim',
     'saghen/blink.cmp',
@@ -207,20 +207,20 @@ return {
         end,
       },
 
-      -- lua_ls = {
-      --   -- cmd = { ... },
-      --   -- filetypes = { ... },
-      --   -- capabilities = {},
-      --   settings = {
-      --     Lua = {
-      --       completion = {
-      --         callSnippet = 'Replace',
-      --       },
-      --       -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      --       -- diagnostics = { disable = { 'missing-fields' } },
-      --     },
-      --   },
-      -- },
+      lua_ls = {
+        -- cmd = { ... },
+        -- filetypes = { ... },
+        -- capabilities = {},
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = 'Replace',
+            },
+            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+            -- diagnostics = { disable = { 'missing-fields' } },
+          },
+        },
+      },
     }
 
     for server_name, server_config in pairs(servers) do
