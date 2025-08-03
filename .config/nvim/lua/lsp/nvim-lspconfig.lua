@@ -46,7 +46,7 @@ return {
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
-        map('<leader>c', vim.lsp.buf.code_action, '[G]oto [C]ode Action', { 'n', 'x' })
+        map('<leader>a', vim.lsp.buf.code_action, '[G]oto [C]ode Action', { 'n', 'x' })
 
         -- Find references for the word under your cursor.
         map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -136,7 +136,23 @@ return {
     -- See :help vim.diagnostic.Opts
     vim.diagnostic.config {
       severity_sort = true,
-      float = { border = 'rounded', source = 'if_many' },
+      float = {
+        border = 'rounded',
+        source = 'if_many',
+        focusable = false,
+        scope = 'line',
+        close_events = {
+          'CursorMoved',
+          'CursorMovedI',
+          'BufLeave',
+          'BufHidden',
+          'InsertCharPre',
+          'WinLeave',
+          'InsertEnter',
+          'LspAttach',
+          'LspDetach',
+        },
+      },
       underline = { severity = vim.diagnostic.severity.ERROR },
       signs = vim.g.have_nerd_font and {
         text = {

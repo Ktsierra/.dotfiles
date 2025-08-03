@@ -93,6 +93,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.
       builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
         previewer = false,
+        layout_config = {
+          height = 0.7,
+          width = 0.5,
+        },
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
 

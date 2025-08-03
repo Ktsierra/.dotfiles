@@ -10,7 +10,7 @@ return {
 
       local harpoon_utils = require 'util.harpoon_utils'
 
-      vim.keymap.set('n', '<leader>a', function()
+      vim.keymap.set('n', '<leader>ha', function()
         harpoon:list():add()
         harpoon_utils.update_harpoon_keymaps()
       end, { desc = '[H]arpoon: [A]dd file' })

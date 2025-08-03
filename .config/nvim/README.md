@@ -71,11 +71,11 @@ Here are some of the notable keybindings:
 - `gd`: Go to definition (LSP).
 - `grn`: Rename symbol (LSP).
 - `grr`: Find references (LSP).
-- `<leader>c`: Code actions (LSP).
+- `<leader>a`: Code actions (LSP).
 - `<leader>sh`: Search help tags (Telescope).
 - `<leader>sf`: Find files (Telescope).
 - `<leader>sg`: Live grep (Telescope).
-- `<leader>a`: Add current file to Harpoon list.
+- `<leader>ha`: Add current file to Harpoon list.
 - `<leader>hh`: Toggle Harpoon quick menu.
 - `<leader>hp`: Go to previous Harpoon file.
 - `<leader>hn`: Go to next Harpoon file.
