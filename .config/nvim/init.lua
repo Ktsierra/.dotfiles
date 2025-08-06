@@ -124,7 +124,7 @@ require('lazy').setup({
 
   -- Themes and Colorschemes
   require 'theme.eldritch',
-  require 'theme.tokyonight',
+  { import = 'theme' },
 
   -- Debugging
   require 'plugins.debug',
