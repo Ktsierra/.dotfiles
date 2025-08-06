@@ -135,6 +135,9 @@ return {
       -- - App keeps compiled version but gets debugging from dev server
       -- - Only 1 debugger active at time (RN limitation)
       --
+      -- WHAT WON'T WORK:
+      -- - Using a physical device
+      --
       -- NOTE: nvim-dap might disconnect the first time you run it with DevTools open,
       -- thats just how it works. Devtools will disconnect too,w you can safely recconect using
       -- nvim-dap. Make sure to reload your app if this happens.
