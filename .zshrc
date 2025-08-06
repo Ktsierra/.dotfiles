@@ -16,13 +16,13 @@ PATH=~/.console-ninja/.bin:$PATH
 
 # ssh-agent setup
 # personal github
-if ssh-add -l 2>/dev/null | grep -q "$(ssh-keygen -lf ~/.ssh/id_ed25519.pub | awk '{print $2}')"; then
+if ssh-add -l 2>/dev/null | grep -q "$(ssh-keygen -lf ~/.ssh/github_key.pub | awk '{print $2}')"; then
   # Key is already loaded in the agent
   #echo "personal github key is already loaded in the agent."
   : # No action needed
 else
   # Key is not loaded; add it
-  ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1
+  ssh-add ~/.ssh/github_key >/dev/null 2>&1
 fi
 
 # Automate tmux session cleanup every X hours using a LaunchAgent
