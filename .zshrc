@@ -232,3 +232,6 @@ alias nv='nvim'
 
 # lazygit alias
 alias lg='lazygit'
+
+# Ruby 3.3
+export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
