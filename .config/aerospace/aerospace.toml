@@ -139,7 +139,7 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     alt-1 = 'workspace M'
     alt-2 = 'workspace T'
-    # alt-3 = 'workspace 3'
+    alt-3 = 'workspace S'
     # alt-4 = 'workspace 4'
     # alt-5 = 'workspace 5'
     # alt-6 = 'workspace 6'
@@ -207,7 +207,7 @@ run = "move-node-to-workspace T"
 
 [[on-window-detected]]
 if.app-id = "com.apple.iphonesimulator"
-run = "move-node-to-workspace S"
+run = "move-node-to-workspace T"
 
 [[on-window-detected]]
 if.app-id = "com.google.Chrome"
