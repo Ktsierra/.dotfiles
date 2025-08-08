@@ -149,6 +149,7 @@ return {
           'InsertCharPre',
           'WinLeave',
           'InsertEnter',
+          'InsertLeave',
           'LspAttach',
           'LspDetach',
         },

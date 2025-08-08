@@ -2,7 +2,7 @@ return {
   'saghen/blink.cmp',
   event = 'VeryLazy',
   version = '1.*',
-  completion = { accept = { auto_brackets = { enabled = true } } }, -- iwindwp/nvim-autopairs integrations
+  -- completion = { accept = { auto_brackets = { enabled = true } } }, -- iwindwp/nvim-autopairs integrations
   dependencies = {
     -- Snippet Engine
     {
@@ -44,6 +44,13 @@ return {
           end
         end, { silent = true })
       end,
+    },
+    {
+      'fang2hou/blink-copilot',
+      version = '*',
+      dependencies = {
+        'github/copilot.vim',
+      },
     },
     'folke/lazydev.nvim',
   },
@@ -91,11 +98,27 @@ return {
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
+      default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer', 'copilot' },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         path = { score_offset = 3 },
         lsp = { score_offset = 0 },
+        copilot = {
+          name = 'copilot',
+          module = 'blink-copilot',
+          score_offset = 100,
+          async = true,
+          opts = {
+            max_completions = 3,
+            max_attempts = 4,
+            -- kind = "Copilot",
+            debounce = 500, ---@type integer | false
+            auto_refresh = {
+              backward = true,
+              forward = true,
+            },
+          },
+        },
         snippets = {
           -- disable snippets when typing a word that ends with a dot or colon
           -- this is for no clutter when typing chains like `vim.api.nvim_get_current_line()`
