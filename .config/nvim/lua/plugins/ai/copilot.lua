@@ -37,17 +37,6 @@ return {
           diff.setup {
             -- Disabled by default
             source = diff.gen_source.none(),
-
-            vim.api.nvim_create_user_command('DiffOff', function()
-              -- Disable for all current buffers first
-              for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-                if vim.api.nvim_buf_is_valid(buf) then
-                  diff.disable(buf)
-                end
-              end
-              diff.config.source = diff.gen_source.none()
-              vim.notify 'Mini.diff disabled'
-            end, { desc = 'Disable mini.diff' }),
           }
         end,
       },
@@ -56,7 +45,7 @@ return {
         ft = { 'markdown', 'codecompanion' },
       },
     },
-    -- config = true,
+    config = true,
     cmd = {
       'CodeCompanion',
       'CodeCompanionChat',
@@ -66,7 +55,6 @@ return {
     keys = {
       { '<leader>cc', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'Toggle Chat', mode = { 'n', 'v' } },
       { '<leader>ca', '<cmd>CodeCompanionActions<cr>', desc = 'Prompt Actions', mode = { 'n', 'v' } },
-      { '<leader>ct', '<cmd>DiffOff<cr>', desc = 'Turn off diff' },
     },
     opts = {
       strategies = {
@@ -80,7 +68,6 @@ return {
       show_defaults = false,
       adapters = {
         copilot = function()
-          -- lua print(vim.inspect(require("codecompanion.adapters").extend("copilot").schema.model.choices()))
           local adapters = require 'codecompanion.adapters'
           return adapters.extend('copilot', {
             schema = {
@@ -92,12 +79,14 @@ return {
         end,
       },
       display = {
+        action_palette = {
+          provider = 'telescope',
+        },
         diff = {
           provider = 'mini_diff',
         },
         chat = {
           render_headers = true,
-          show_settings = true,
           show_token_count = true,
           buf_options = {
             buflisted = false,
