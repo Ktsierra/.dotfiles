@@ -1069,10 +1069,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a 'Simulator.app'"
+                    "shell_command": "open -a 'Firefox.app'"
                   }
                 ],
-                "description": "Open -a 'Simulator.app'",
+                "description": "Open -a 'Firefox.app'",
                 "type": "basic",
                 "from": {
                   "key_code": "7",
@@ -1203,10 +1203,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "open -a 'Firefox.app'"
+                    "shell_command": "open -a 'Simulator.app'"
                   }
                 ],
-                "description": "Open -a 'Firefox.app'",
+                "description": "Open -a 'Simulator.app'",
                 "type": "basic",
                 "from": {
                   "key_code": "9",
