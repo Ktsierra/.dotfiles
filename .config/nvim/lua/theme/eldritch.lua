@@ -16,7 +16,9 @@ return {
     vim.api.nvim_set_hl(0, '@lsp.type.class.typescript', { link = 'Constant' })
     vim.api.nvim_set_hl(0, '@keyword.operator.typescript', { link = '@keyword' })
     vim.api.nvim_set_hl(0, '@function.builtin', { link = 'Function' })
-    vim.api.nvim_set_hl(0, 'Type', { link = 'Character' })
+    -- vim.api.nvim_set_hl(0, 'Type', { link = 'Character' })
     vim.api.nvim_set_hl(0, '@lsp.type.interface', { link = 'Character' })
+    vim.api.nvim_set_hl(0, '@lsp.type.type', { link = 'Character' })
+    vim.api.nvim_set_hl(0, '@tag.builtin.tsx', { link = 'tag.tsx' })
   end,
 }
