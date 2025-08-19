@@ -94,6 +94,7 @@ return {
     completion = {
       -- By default, you may press `<c-space>` to show the documentation.
       -- Optionally, set `auto_show = true` to show the documentation after a delay.
+      menu = { auto_show = true },
       documentation = { auto_show = true, auto_show_delay_ms = 500 },
     },
 
@@ -108,14 +109,17 @@ return {
           module = 'blink-copilot',
           score_offset = 100,
           async = true,
+          enabled = function()
+            -- Check if we're in "manual copilot mode"
+            return vim.g.blink_copilot_manual_mode == true
+          end,
           opts = {
             max_completions = 3,
             max_attempts = 4,
-            -- kind = "Copilot",
             debounce = 500, ---@type integer | false
             auto_refresh = {
-              backward = true,
-              forward = true,
+              backward = false, -- Disable auto refresh
+              forward = false, -- Disable auto refresh
             },
           },
         },
@@ -152,4 +156,32 @@ return {
     -- Shows a signature help window while you type arguments for a function
     signature = { enabled = true },
   },
+  config = function(_, opts)
+    require('blink.cmp').setup(opts)
+
+    -- Initialize copilot manual mode as false
+    vim.g.blink_copilot_manual_mode = false
+
+    -- Manual trigger for copilot
+    vim.keymap.set({ 'i', 's' }, '<C-Space>', function()
+      -- Enable copilot temporarily
+      vim.g.blink_copilot_manual_mode = true
+
+      -- Trigger completion
+      require('blink.cmp').show()
+
+      -- Auto-disable copilot after a short delay (when menu closes)
+      vim.defer_fn(function()
+        vim.g.blink_copilot_manual_mode = false
+      end, 100)
+    end, { desc = 'Show Copilot completions' })
+
+    -- Also disable copilot mode when menu is hidden
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'BlinkCmpMenuClose',
+      callback = function()
+        vim.g.blink_copilot_manual_mode = false
+      end,
+    })
+  end,
 }

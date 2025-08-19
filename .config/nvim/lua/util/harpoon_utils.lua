@@ -12,6 +12,14 @@ function M.update_harpoon_keymaps()
     end
     vim.keymap.set('n', string.format('<leader>%d', idx), function()
       harpoon:list():select(idx)
+
+      --NOTE: this is needed to make copilot blink integration work
+      -- when opening a file with harpoon
+      vim.cmd 'doautocmd FileType'
+      -- vim.defer_fn(function()
+      -- vim.cmd 'doautocmd BufEnter'
+      -- vim.cmd 'doautocmd FileType'
+      -- end, 50)
     end, { desc = desc })
   end
 end

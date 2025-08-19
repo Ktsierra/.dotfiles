@@ -72,7 +72,7 @@ return {
           return adapters.extend('copilot', {
             schema = {
               model = {
-                default = 'claude-sonnet-4',
+                default = 'gpt-5-mini',
               },
             },
           })
