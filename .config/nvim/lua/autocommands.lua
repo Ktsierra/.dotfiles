@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'InsertLeave' }, {
   pattern = '*',
   callback = function()
     if vim.bo.modified and vim.bo.buftype == '' then
+      vim.lsp.buf.format { async = true }
       vim.cmd.write()
     end
   end,

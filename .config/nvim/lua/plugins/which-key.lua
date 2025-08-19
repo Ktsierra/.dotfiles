@@ -60,6 +60,10 @@ return
     spec = {
       { '<leader>s', group = '[S]earch' },
       { '<leader>t', group = '[T]oggle' },
+      { '<leader>c', group = '[C]opilot' },
+      { '<leader>z', group = '[Z]urround :)' },
+      { '<leader>g', group = '[G]ithub' },
+      { '<leader>h', group = '[H]arpoon' },
     },
   },
 }

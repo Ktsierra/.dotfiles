@@ -46,3 +46,12 @@ set('n', '<leader>l', '<CMD>Lazy<CR>', { desc = 'Lazy Menu' })
 
 -- Mason
 set('n', '<leader>m', '<CMD>Mason<CR>', { desc = 'Mason Menu' })
+
+-- Scroll with centered cursor
+set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down with centered cursor' })
+set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up with centered cursor' })
+set('n', '<C-f>', '<C-f>zz', { desc = 'Scroll forward with centered cursor' })
+set('n', '<C-b>', '<C-b>zz', { desc = 'Scroll backward with centered cursor' })
+
+-- Save with leader w
+set('n', '<leader>w', '<cmd>w<CR>', { desc = '[W]rite (save) file' })

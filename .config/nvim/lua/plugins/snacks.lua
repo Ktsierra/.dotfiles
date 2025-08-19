@@ -17,6 +17,7 @@ return {
         },
       },
       picker = {
+        ui_select = false,
         sources = {
           media = {
             finder = 'files',
