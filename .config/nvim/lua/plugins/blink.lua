@@ -58,6 +58,8 @@ return {
   --- @type blink.cmp.Config
   opts = {
     keymap = {
+      -- Disable blink.cmp's built-in <C-Space> mapping so our manual mapping can use it
+      ['<C-Space>'] = false,
       -- 'default' (recommended) for mappings similar to built-in completions
       --   <c-y> to accept ([y]es) the completion.
       --    This will auto-import if your LSP supports it.
