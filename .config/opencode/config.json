@@ -1,7 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "system",
-  "model": "lmstudio/qwen2.5-coder-14b",
+  "model": "github-copilot/gpt-5-mini",
   "provider": {
     "lmstudio": {
       "npm": "@ai-sdk/openai-compatible",
@@ -10,25 +10,25 @@
       },
       "models": {
         "qwen2.5-coder-14b": {
-            "name": "Qwen 2.5 Coder 14B",
-            "limit": {
-                "context": 16384,
-                "output": 4096
-            }
+          "name": "Qwen 2.5 Coder 14B",
+          "limit": {
+            "context": 16384,
+            "output": 4096
+          }
         },
         "qwen2.5-coder-7b": {
-            "name": "Qwen 2.5 Coder 7B",
-            "limit": {
-                "context": 16384,
-                "output": 4096
-            }
+          "name": "Qwen 2.5 Coder 7B",
+          "limit": {
+            "context": 16384,
+            "output": 4096
+          }
         },
         "deepseek/deepseek-r1-0528-qwen3-8b": {
-            "name": "DeepSeek R1 0528 Qwen3 8B",
-            "limit": {
-                "context": 131072,
-                "output": 32768
-            }
+          "name": "DeepSeek R1 0528 Qwen3 8B",
+          "limit": {
+            "context": 131072,
+            "output": 32768
+          }
         }
       }
     }
