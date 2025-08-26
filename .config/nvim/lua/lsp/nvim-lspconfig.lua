@@ -153,6 +153,12 @@ return {
           'LspAttach',
           'LspDetach',
         },
+        format = function(diagnostic)
+          if diagnostic.source == 'eslint' then
+            return nil
+          end
+          return diagnostic.message
+        end,
       },
       underline = { severity = vim.diagnostic.severity.ERROR },
       signs = vim.g.have_nerd_font and {
