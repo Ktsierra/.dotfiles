@@ -240,9 +240,9 @@ install_or_update_eas_cli() {
     fi
 }
 
-# make tmuxKillSessions.sh, tmux-sessionizer.sh and applescripts executable
+# make tmuxKillSessions.sh, tmux-sessionizer.sh, ssh-sessionizer.sh and applescripts executable
 make_tmux_scripts_executable() {
-    for script in "tmuxKillSessions.sh" "tmux-sessionizer.sh"; do
+    for script in "tmuxKillSessions.sh" "tmux-sessionizer.sh" "ssh-sessionizer.sh"; do
         if [[ -f "$HOME/.config/tmux/$script" ]]; then
             if [[ ! -x "$HOME/.config/tmux/$script" ]]; then
                 term_message cb "Making $script executable..."

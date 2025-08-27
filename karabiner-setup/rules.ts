@@ -370,7 +370,8 @@ const rules: KarabinerRules[] = [
       8: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 8`, // switch to window 8
       9: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 9`, // switch to window 9
       0: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt 0`, // switch to window 0
-      spacebar: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt F`, // switch between 2 windows (like alt+tab)
+      spacebar: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt F`, // Open Ghostty and run tmux sessionizer
+      z: shell`osascript ~/.config/tmux/scripts/open_ghostty_and_sessionize.scpt Z`, // Open Ghostty and run tmux sshionizer
       //copy mode
       open_bracket: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt [`, // enter copy mode
       close_bracket: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt ]`, // paste from buffer_0
@@ -378,7 +379,7 @@ const rules: KarabinerRules[] = [
     },
 
     // tmux sessionizer, layer z for specific sessions
-    spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt l`, // Open Ghostty and run tmux sessionizer
+    spacebar: shell`osascript ~/.config/tmux/scripts/tmux_controller.scpt l`, // switch between 2 windows (like alt+tab)
 
     // z = "Sessionize" into Ghostty
     z: {

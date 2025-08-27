@@ -86,7 +86,7 @@ My `.zshrc` and `.zprofile` are configured for a powerful and efficient terminal
 
 - **Tmux Plugin Manager (TPM):** Automatically installed by `autobrew.sh`.
 - **Custom Eldritch Theme:** A personalized `tmux-eldritch` theme is used.
-- **Session Management:** Includes `tmux-sessionizer.sh` for quick session management and `tmuxKillSessions.sh` for automated cleanup.
+- **Session Management:** Includes `tmux-sessionizer.sh` for quick project session management, `ssh-sessionizer.sh` for SSH host session management, and `tmuxKillSessions.sh` for automated cleanup.
 - **Plugins:** Uses `tmux-resurrect` and `tmux-continuum` to save and restore sessions.
 
 ### Neovim
