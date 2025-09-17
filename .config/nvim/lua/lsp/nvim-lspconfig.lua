@@ -6,7 +6,7 @@ return {
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     { 'mason-org/mason.nvim', opts = {} },
-    { 'mason-org/mason-lspconfig.nvim' },
+    'mason-org/mason-lspconfig.nvim',
     { 'WhoIsSethDaniel/mason-tool-installer.nvim', event = 'VimEnter' },
     'b0o/SchemaStore.nvim',
     'saghen/blink.cmp',
@@ -248,7 +248,8 @@ return {
 
     for server_name, server_config in pairs(servers) do
       server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
-      require('lspconfig')[server_name].setup(server_config)
+      vim.lsp.config(server_name, server_config)
+      vim.lsp.enable(server_name)
     end
 
     -- After adding new run :MasonToolsInstall to install the new tools
