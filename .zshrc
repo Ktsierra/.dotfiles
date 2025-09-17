@@ -217,7 +217,6 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-alias npm='pnpm'
 # pnpm end
 
 # Editor config
