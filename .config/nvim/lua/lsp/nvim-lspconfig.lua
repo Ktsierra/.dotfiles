@@ -224,10 +224,6 @@ return {
           client.server_capabilities.documentRangeFormattingProvider = false
           client.server_capabilities.publishDiagnostics = false
         end,
-        root_dir = function(fname)
-          local util = require 'lspconfig.util'
-          return util.root_pattern('eslint.config.mjs', 'eslint.config.js', '.eslintrc.js', '.eslintrc.json', 'package.json')(fname) or vim.fs.dirname(fname)
-        end,
       },
 
       lua_ls = {
