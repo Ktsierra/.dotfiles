@@ -31,7 +31,7 @@ return {
       'github/copilot.vim',
       -- Diff looks
       {
-        'echasnovski/mini.diff',
+        'mini-nvim/mini.diff',
         config = function()
           local diff = require 'mini.diff'
           diff.setup {
@@ -67,16 +67,18 @@ return {
       },
       show_defaults = false,
       adapters = {
-        copilot = function()
-          local adapters = require 'codecompanion.adapters'
-          return adapters.extend('copilot', {
-            schema = {
-              model = {
-                default = 'gpt-5-mini',
+        http = {
+          copilot = function()
+            local adapters = require 'codecompanion.adapters'
+            return adapters.extend('copilot', {
+              schema = {
+                model = {
+                  default = 'gpt-5-mini',
+                },
               },
-            },
-          })
-        end,
+            })
+          end,
+        },
       },
       display = {
         action_palette = {
