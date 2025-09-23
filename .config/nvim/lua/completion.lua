@@ -1,2 +1,2 @@
-vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
-vim.opt.shortmess:append 'c'
+vim.o.completeopt = { 'menu', 'menuone', 'noinsert' }
+vim.o.shortmess = 'c'

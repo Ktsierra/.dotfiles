@@ -13,7 +13,9 @@ vim.g.have_nerd_font = true
 
 -- Sets up neovim options (vim.o and vim.opt)
 require 'opt'
--- require 'completion'
+
+-- Custom filetype mappings
+require 'filetypes'
 
 -- Sets up keymaps
 require 'keymaps'
