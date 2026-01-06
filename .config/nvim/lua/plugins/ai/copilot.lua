@@ -57,6 +57,7 @@ return {
       { '<leader>ca', '<cmd>CodeCompanionActions<cr>', desc = 'Prompt Actions', mode = { 'n', 'v' } },
     },
     opts = {
+      ignore_warnings = true, -- See: https://github.com/olimorris/codecompanion.nvim/pull/2439
       strategies = {
         chat = {
           adapter = 'copilot',

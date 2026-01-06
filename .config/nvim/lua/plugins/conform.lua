@@ -35,6 +35,7 @@ return { -- Autoformat
       typescript = { 'prettierd', 'eslint_d' },
       javascriptreact = { 'prettierd', 'eslint_d' },
       typescriptreact = { 'prettierd', 'eslint_d' },
+      kotlin = { 'ktlint' },
     },
   },
 }

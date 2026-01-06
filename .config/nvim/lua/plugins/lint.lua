@@ -13,6 +13,7 @@ return {
         typescript = { 'eslint_d' },
         javascriptreact = { 'eslint_d' },
         typescriptreact = { 'eslint_d' },
+        kotlin = { 'ktlint' },
       }
 
       lint.linters.luacheck = {

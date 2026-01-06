@@ -210,6 +210,11 @@ return {
       },
       tailwindcss = {},
       pyright = {},
+      kotlin_language_server = {
+        init_options = {
+          storagePath = vim.fn.stdpath 'data' .. '/kotlin-language-server',
+        },
+      },
 
       eslint = {
         settings = {
@@ -256,6 +261,7 @@ return {
       'markdownlint-cli2',
       'eslint_d',
       'prettierd',
+      'ktlint',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
   end,

@@ -13,11 +13,13 @@ return {
       vim.keymap.set('n', '<leader>ha', function()
         harpoon:list():add()
         harpoon_utils.update_harpoon_keymaps()
+        vim.notify(string.format('Added "%s" to Harpoon list.', vim.fn.expand '%:t'))
       end, { desc = '[H]arpoon: [A]dd file' })
 
       vim.keymap.set('n', '<leader>hc', function()
         harpoon:list():clear()
         harpoon_utils.update_harpoon_keymaps()
+        vim.notify('Cleared Harpoon list.', vim.log.levels.INFO)
       end, { desc = '[H]arpoon: [C]lear List' })
 
       vim.keymap.set('n', '<leader>hh', function()

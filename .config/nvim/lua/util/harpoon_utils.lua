@@ -15,7 +15,7 @@ function M.update_harpoon_keymaps()
 
       --NOTE: this is needed to make copilot blink integration work
       -- when opening a file with harpoon
-      vim.cmd 'doautocmd FileType'
+      --
       -- vim.defer_fn(function()
       -- vim.cmd 'doautocmd BufEnter'
       -- vim.cmd 'doautocmd FileType'
