@@ -211,6 +211,8 @@ return {
       tailwindcss = {},
       pyright = {},
       kotlin_language_server = {
+        cmd = { 'kotlin-language-server' },
+        -- root_dir = require('lspconfig.util').root_pattern('settings.gradle', 'settings.gradle.kts', 'build.gradle', 'gradlew', '.git'),
         init_options = {
           storagePath = vim.fn.stdpath 'data' .. '/kotlin-language-server',
         },

@@ -297,12 +297,23 @@ reminder_manual_installs() {
     term_message yb "4. Restart your terminal to apply changes or run 'source ~/.zshrc'."
 }
 
+#install npm neovim package globaly
+install_npm_neovim(){
+    term_message cb "\nInstalling neovim npm package globally..."
+    if npm install -g neovim --silent; then
+        term_message gb "neovim npm package installed globally."
+    else
+        term_message rb "Failed to install neovim npm package globally."
+    fi
+}
+
+
 # One function to rule them all.
 main() {
     # Customise the following list variables (tap_list, term_list and cask_list) 
     # Leave list blank or comment out the list if not required.
-    tap_list="nikitabobko/tap sst/tap"
-    term_list="node neovim tmux git gh awscli vercel-cli pnpm npm yarn nvm stow watchman starship fzf eza bat ripgrep zsh-autosuggestions zoxide opencode gemini-cli gcc make fd luarocks wget go lazygit imagemagick pkgconfig tree-sitter-cli typescript ffmpeg ruby@3.3 direnv git-lfs xcodes fastlane kotlin-language-server"
+    tap_list="nikitabobko/tap sst/tap tw93/tap"
+    term_list="node neovim tmux git gh awscli vercel-cli pnpm npm yarn nvm stow watchman starship fzf eza bat ripgrep zsh-autosuggestions zoxide opencode gemini-cli gcc make fd luarocks wget go lazygit imagemagick pkgconfig tree-sitter-cli typescript ffmpeg ruby@3.3 direnv git-lfs xcodes fastlane kotlin-language-server gradle kotlin mole"
     cask_list="font-jetbrains-mono-nerd-font karabiner-elements ghostty nikitabobko/tap/aerospace gimp zulu@17 firefox google-chrome lm-studio xcodes expo-orbit"
     clear
     term_colors
@@ -317,6 +328,7 @@ main() {
     stow_dotfiles
     make_tmux_scripts_executable
     install_tmux_plugin_manager
+    install_npm_neovim
     term_message gb "\nScript completed."
     reminder_manual_installs
 }
