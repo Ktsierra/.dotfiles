@@ -172,27 +172,6 @@ function M.show()
   -- Enable treesitter markdown highlighting
   vim.treesitter.start(float_buf, 'markdown')
 
-  -- Use render-markdown.nvim for proper rendering (uses extmarks, not conceal)
-  -- We need a slight delay to ensure treesitter is fully initialized
-  vim.defer_fn(function()
-    if vim.api.nvim_buf_is_valid(float_buf) and vim.api.nvim_win_is_valid(win) then
-      local ok, api = pcall(require, 'render-markdown.api')
-      if ok then
-        -- Clear any existing state for this buffer
-        local ui_ok, ui = pcall(require, 'render-markdown.core.ui')
-        if ui_ok and ui.cache then
-          ui.cache[float_buf] = nil
-        end
-        local state_ok, state = pcall(require, 'render-markdown.state')
-        if state_ok and state.cache then
-          state.cache[float_buf] = nil
-        end
-        -- Now render
-        api.render { buf = float_buf, win = win }
-      end
-    end
-  end, 10)
-
   -- Auto-close on cursor move
   vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI', 'BufLeave', 'WinLeave' }, {
     once = true,

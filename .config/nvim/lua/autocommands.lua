@@ -16,7 +16,20 @@ vim.api.nvim_create_autocmd({ 'CursorHold' }, {
   desc = 'Diagnostics description on hover',
   group = vim.api.nvim_create_augroup('diagnostic-hover', { clear = true }),
   callback = function()
-    require('util.ts_diagnostic_float').show()
+    vim.diagnostic.open_float({
+      format = function(diagnostic)
+        local message = diagnostic.message
+        -- Format tsserver messages with PrettyTsFormat
+        if diagnostic.source == 'tsserver' then
+          local ok, formatted = pcall(vim.fn.PrettyTsFormat, message)
+          if ok and formatted and formatted ~= '' then
+            message = formatted
+          end
+        end
+        return message
+      end,
+      source = true,
+    })
   end,
 })
 
