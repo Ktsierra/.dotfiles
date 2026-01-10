@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({ 'CursorHold' }, {
   desc = 'Diagnostics description on hover',
   group = vim.api.nvim_create_augroup('diagnostic-hover', { clear = true }),
   callback = function()
-    vim.diagnostic.open_float()
+    require('util.ts_diagnostic_float').show()
   end,
 })
 

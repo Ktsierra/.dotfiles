@@ -63,6 +63,7 @@ require('lazy').setup({
   -- LSP
   require 'lsp.nvim-lspconfig',
   require 'lsp.lazydev',
+  require 'plugins.pretty-ts-errors',
 
   -- Tree-sitter
   require 'plugins.tree-sitter',
