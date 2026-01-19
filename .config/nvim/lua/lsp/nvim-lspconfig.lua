@@ -154,6 +154,9 @@ return {
           'LspDetach',
         },
         format = function(diagnostic)
+          if diagnostic.source == 'tsserver' then
+            return require('ts-errors').format(diagnostic)
+          end
           if diagnostic.source == 'eslint' then
             return nil
           end
