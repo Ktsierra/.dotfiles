@@ -234,3 +234,10 @@ alias lg='lazygit'
 
 # Ruby 3.3
 export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
+
+# bun completions
+[ -s "/Users/ktsierra/.bun/_bun" ] && source "/Users/ktsierra/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

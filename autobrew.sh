@@ -307,6 +307,19 @@ install_npm_neovim(){
     fi
 }
 
+install_bun() {
+    term_message cb "\nInstalling Bun JavaScript runtime..."
+    if command -v bun >/dev/null 2>&1; then
+        term_message yb "Bun is already installed."
+    else
+        if curl -fsSL https://bun.sh/install | bash; then
+            term_message gb "Bun installed successfully."
+        else
+            term_message rb "Failed to install Bun."
+        fi
+    fi
+}
+
 
 # One function to rule them all.
 main() {
@@ -329,6 +342,7 @@ main() {
     make_tmux_scripts_executable
     install_tmux_plugin_manager
     install_npm_neovim
+    install_bun
     term_message gb "\nScript completed."
     reminder_manual_installs
 }
