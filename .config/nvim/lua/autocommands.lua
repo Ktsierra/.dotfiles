@@ -37,3 +37,15 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'InsertLeave' }, {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd('BufWinLeave', {
+  group = vim.api.nvim_create_augroup('view_save', { clear = true }),
+  pattern = '*.*',
+  command = 'mkview',
+})
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  group = vim.api.nvim_create_augroup('view_load', { clear = true }),
+  pattern = '*.*',
+  command = 'silent! loadview',
+})
