@@ -45,13 +45,13 @@ return {
         end, { silent = true })
       end,
     },
-    {
-      'fang2hou/blink-copilot',
-      version = '*',
-      dependencies = {
-        'github/copilot.vim',
-      },
-    },
+    -- {
+    --   'fang2hou/blink-copilot',
+    --   version = '*',
+    --   dependencies = {
+    --     'github/copilot.vim',
+    --   },
+    -- },
     'folke/lazydev.nvim',
   },
   --- @module 'blink.cmp'
@@ -101,30 +101,30 @@ return {
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer', 'copilot' },
+      default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' --[[ , 'copilot' ]] },
       providers = {
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         path = { score_offset = 3 },
         lsp = { score_offset = 0 },
-        copilot = {
-          name = 'copilot',
-          module = 'blink-copilot',
-          score_offset = 100,
-          async = true,
-          enabled = function()
-            -- Check if we're in "manual copilot mode"
-            return vim.g.blink_copilot_manual_mode == true
-          end,
-          opts = {
-            max_completions = 3,
-            max_attempts = 4,
-            debounce = 500, ---@type integer | false
-            auto_refresh = {
-              backward = false, -- Disable auto refresh
-              forward = false, -- Disable auto refresh
-            },
-          },
-        },
+        -- copilot = {
+        --   name = 'copilot',
+        --   module = 'blink-copilot',
+        --   score_offset = 100,
+        --   async = true,
+        --   enabled = function()
+        --     -- Check if we're in "manual copilot mode"
+        --     return vim.g.blink_copilot_manual_mode == true
+        --   end,
+        --   opts = {
+        --     max_completions = 3,
+        --     max_attempts = 4,
+        --     debounce = 500, ---@type integer | false
+        --     auto_refresh = {
+        --       backward = false, -- Disable auto refresh
+        --       forward = false, -- Disable auto refresh
+        --     },
+        --   },
+        -- },
         snippets = {
           -- disable snippets when typing a word that ends with a dot or colon
           -- this is for no clutter when typing chains like `vim.api.nvim_get_current_line()`
@@ -171,16 +171,16 @@ return {
 
       -- Trigger completion
       require('blink.cmp').show()
-
-      -- Auto-disable copilot after a short delay (when menu closes)
-      vim.defer_fn(function()
-        vim.g.blink_copilot_manual_mode = false
-      end, 100)
     end, { desc = 'Show Copilot completions' })
 
-    -- Also disable copilot mode when menu is hidden
+    -- Disable copilot mode when menu closes or leaving insert mode
     vim.api.nvim_create_autocmd('User', {
       pattern = 'BlinkCmpMenuClose',
+      callback = function()
+        vim.g.blink_copilot_manual_mode = false
+      end,
+    })
+    vim.api.nvim_create_autocmd('InsertLeave', {
       callback = function()
         vim.g.blink_copilot_manual_mode = false
       end,

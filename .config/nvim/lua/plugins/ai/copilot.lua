@@ -1,34 +1,39 @@
 ---@module "lazy"
 ---@return LazyPluginSpec[]
 return {
-  {
-    'github/copilot.vim',
-    cmd = 'Copilot',
-    event = 'BufWinEnter',
-    init = function()
-      vim.g.copilot_no_maps = true
-    end,
-    config = function()
-      -- Block the normal Copilot suggestions
-      -- This setup and the callback is required for
-      -- https://github.com/fang2hou/blink-copilot
-      vim.api.nvim_create_augroup('github_copilot', { clear = true })
-      vim.api.nvim_create_autocmd({ 'FileType', 'BufUnload' }, {
-        group = 'github_copilot',
-        callback = function(args)
-          vim.fn['copilot#On' .. args.event]()
-        end,
-      })
-      vim.fn['copilot#OnFileType']()
-    end,
-  },
+  -- {
+  --   'github/copilot.vim',
+  --   cmd = 'Copilot',
+  --   event = 'BufWinEnter',
+  --   init = function()
+  --     vim.g.copilot_no_maps = true
+  --   end,
+  --   config = function()
+  --     -- Block the normal Copilot suggestions
+  --     -- This setup and the callback is required for
+  --     -- https://github.com/fang2hou/blink-copilot
+  --     vim.api.nvim_create_augroup('github_copilot', { clear = true })
+  --     vim.api.nvim_create_autocmd({ 'FileType', 'BufUnload' }, {
+  --       group = 'github_copilot',
+  --       callback = function(args)
+  --         vim.fn['copilot#On' .. args.event]()
+  --       end,
+  --     })
+  --     -- Defer the initial OnFileType call to give copilot's Node agent
+  --     -- time to start. Without this, the first buffer never gets registered
+  --     -- because the agent isn't ready when config runs on BufWinEnter.
+  --     vim.defer_fn(function()
+  --       pcall(vim.fn['copilot#OnFileType'])
+  --     end, 1500)
+  --   end,
+  -- },
   {
     'olimorris/codecompanion.nvim',
     event = 'UIEnter',
     dependencies = {
       'nvim-lua/plenary.nvim',
       -- Copilot authorization
-      'github/copilot.vim',
+      -- 'github/copilot.vim',
       -- Diff looks
       {
         'nvim-mini/mini.diff',
@@ -58,29 +63,29 @@ return {
     },
     opts = {
       ignore_warnings = true, -- See: https://github.com/olimorris/codecompanion.nvim/pull/2439
-      strategies = {
-        chat = {
-          adapter = 'copilot',
-        },
-        inline = {
-          adapter = 'copilot',
-        },
-      },
+      -- strategies = {
+      --   chat = {
+      --     adapter = 'copilot',
+      --   },
+      --   inline = {
+      --     adapter = 'copilot',
+      --   },
+      -- },
       show_defaults = false,
-      adapters = {
-        http = {
-          copilot = function()
-            local adapters = require 'codecompanion.adapters'
-            return adapters.extend('copilot', {
-              schema = {
-                model = {
-                  default = 'gpt-5-mini',
-                },
-              },
-            })
-          end,
-        },
-      },
+      -- adapters = {
+      --   http = {
+      --     copilot = function()
+      --       local adapters = require 'codecompanion.adapters'
+      --       return adapters.extend('copilot', {
+      --         schema = {
+      --           model = {
+      --             default = 'gpt-5-mini',
+      --           },
+      --         },
+      --       })
+      --     end,
+      --   },
+      -- },
       display = {
         action_palette = {
           provider = 'telescope',
