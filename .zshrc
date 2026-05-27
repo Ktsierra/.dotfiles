@@ -235,6 +235,11 @@ alias lg='lazygit'
 # Ruby 3.3
 export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
 
+# Package manager security - disable lifecycle scripts by default
+# Prevents malicious postinstall/preinstall scripts from running
+# Override per-invocation with --ignore-scripts=false (npm/pnpm) or --ignore-scripts=false (yarn)
+grep -q "ignore-scripts=true" ~/.npmrc 2>/dev/null || echo "ignore-scripts=true" >> ~/.npmrc
+
 # bun completions
 [ -s "/Users/ktsierra/.bun/_bun" ] && source "/Users/ktsierra/.bun/_bun"
 
