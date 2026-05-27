@@ -232,6 +232,12 @@ alias nv='nvim'
 # lazygit alias
 alias lg='lazygit'
 
+# claude alias
+alias claude=~/.local/bin/claude
+
+# karabiner: restart user-server to clear "invalid shared secret" desync (dead shortcuts after sleep/update)
+alias karabiner-fix='launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server && echo "Karabiner user-server restarted"'
+
 # Ruby 3.3
 export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
 
@@ -246,3 +252,9 @@ grep -q "ignore-scripts=true" ~/.npmrc 2>/dev/null || echo "ignore-scripts=true"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+#aws
+  aws() {
+    DYLD_LIBRARY_PATH="/opt/homebrew/opt/expat/lib" command aws "$@"
+  }
+export PATH="$HOME/.local/bin:$PATH"
