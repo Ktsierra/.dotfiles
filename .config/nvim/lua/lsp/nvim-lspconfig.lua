@@ -1,8 +1,7 @@
 return {
   -- Main LSP configuration
   'neovim/nvim-lspconfig',
-  event = { 'BufReadPre', 'BufNewFile' },
-  -- event = 'VeryLazy',
+  event = { 'UIEnter' },
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     { 'mason-org/mason.nvim', opts = {} },
@@ -36,8 +35,13 @@ return {
         -- for LSP related items. It sets the mode, buffer and description for us each time.
         local map = function(keys, func, desc, mode)
           mode = mode or 'n'
-          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          vim.keymap.set(mode, keys, func, { buf = event.buf, desc = 'LSP: ' .. desc })
         end
+
+        -- Hover with rounded border
+        map('K', function()
+          vim.lsp.buf.hover { border = 'rounded' }
+        end, 'Hover Documentation')
 
         -- rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
@@ -130,32 +134,29 @@ return {
           [vim.diagnostic.severity.HINT] = '󰌶 ',
         },
       } or {},
-      -- virtual_text = {
-      --   source = 'if_many',
-      --   spacing = 2,
-      --   format = function(diagnostic)
-      --     if diagnostic.source == 'eslint' then
-      --       return nil -- Filter out eslint diagnostics
-      --     end
-      --     local diagnostic_message = {
-      --       [vim.diagnostic.severity.ERROR] = diagnostic.message,
-      --       [vim.diagnostic.severity.WARN] = diagnostic.message,
-      --       [vim.diagnostic.severity.INFO] = diagnostic.message,
-      --       [vim.diagnostic.severity.HINT] = diagnostic.message,
-      --     }
-      --     return diagnostic_message[diagnostic.severity]
-      --   end,
-      -- },
-      virtual_text = true,
+      virtual_text = {
+        source = 'if_many',
+        spacing = 2,
+        format = function(diagnostic)
+          if diagnostic.source == 'eslint' then
+            return nil
+          end
+          local diagnostic_message = {
+            [vim.diagnostic.severity.ERROR] = diagnostic.message,
+            [vim.diagnostic.severity.WARN] = diagnostic.message,
+            [vim.diagnostic.severity.INFO] = diagnostic.message,
+            [vim.diagnostic.severity.HINT] = diagnostic.message,
+          }
+          return diagnostic_message[diagnostic.severity]
+        end,
+      },
       virtual_lines = false,
-      jump = { float = true },
+      jump = {
+        on_jump = function(diagnostic)
+          vim.diagnostic.open_float()
+        end,
+      },
     }
-
-    -- LSP servers and clients are able to communicate to each other what features they support.
-    --  By default, Neovim doesn't support everything that is in the LSP specification.
-    --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-    --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     --  Add any additional override configuration in the following tables. Available keys are:
     --  - cmd (table): Override the default command used to start the server
@@ -172,15 +173,21 @@ return {
           },
         },
       },
-      tailwindcss = {},
-      pyright = {},
-      kotlin_language_server = {
-        cmd = { 'kotlin-language-server' },
-        -- root_dir = require('lspconfig.util').root_pattern('settings.gradle', 'settings.gradle.kts', 'build.gradle', 'gradlew', '.git'),
-        init_options = {
-          storagePath = vim.fn.stdpath 'data' .. '/kotlin-language-server',
+
+      yamlls = {
+        settings = {
+          yaml = {
+            schemas = require('schemastore').yaml.schemas(),
+            validate = true,
+            hover = true,
+            completion = true,
+          },
         },
       },
+
+      tailwindcss = {},
+      pyright = {},
+      bashls = {},
 
       eslint = {
         settings = {
@@ -213,22 +220,37 @@ return {
       },
     }
 
-    -- After adding new run :MasonToolsInstall to install the new tools
-    local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {
+    -- Map lspconfig names -> mason package names
+    -- NOTE: This replaces mason-lspconfig translations
+    local mason_name_map = {
+      jsonls = 'json-lsp',
+      yamlls = 'yaml-language-server',
+      tailwindcss = 'tailwindcss-language-server',
+      eslint = 'eslint-lsp',
+      lua_ls = 'lua-language-server',
+      pyright = 'pyright',
+      bashls = 'bash-language-server',
+    }
+
+    local mason_ensure_installed = {}
+    for lsp_name in pairs(servers) do
+      table.insert(mason_ensure_installed, mason_name_map[lsp_name] or lsp_name)
+    end
+
+    vim.list_extend(mason_ensure_installed, {
       'stylua', -- Used to format Lua code
       'luacheck',
       'markdownlint-cli2',
       'eslint_d',
       'prettierd',
-      'ktlint',
+      -- You can add other tools here that you want Mason to install
     })
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-    for server_name, server_config in pairs(servers) do
-      server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
-      vim.lsp.config(server_name, server_config)
-      vim.lsp.enable(server_name)
+    require('mason-tool-installer').setup { ensure_installed = mason_ensure_installed, auto_update = true }
+
+    for name, server in pairs(servers) do
+      vim.lsp.config(name, server)
+      vim.lsp.enable(name)
     end
   end,
 }
