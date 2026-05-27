@@ -21,16 +21,21 @@ TMUX_LOG_PATH="/tmp/tmuxKillSessions.log"
 
 NOW=$(($(date +%s)))
 
-tmux ls -F '#{session_name} #{session_activity}' | while read -r LINE; do
+tmux ls -F '#{session_name} #{session_activity} #{session_attached}' | while read -r LINE; do
   SESSION_NAME=$(echo $LINE | awk '{print $1}')
   LAST_ACTIVITY=$(echo $LINE | awk '{print $2}')
+  ATTACHED=$(echo $LINE | awk '{print $3}')
   LAST_ACTIVITY_MINS_ELAPSED=$(((NOW - LAST_ACTIVITY) / 60))
-  # # print all sessions
-  # echo "${SESSION_NAME} is ${LAST_ACTIVITY_MINS_ELAPSED}min"
+
+  # Skip sessions with a client currently attached (Ghostty/iTerm window open on it).
+  # An attached session is "in use" no matter how idle the keyboard is.
+  if [[ "$ATTACHED" -gt 0 ]]; then
+    continue
+  fi
 
   if [[ "$LAST_ACTIVITY_MINS_ELAPSED" -gt "$TOO_OLD_THRESHOLD_MIN" ]]; then
     TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "$TIMESTAMP - Killed session: $SESSION_NAME (Inactive for ${LAST_ACTIVITY_MINS_ELAPSED}min)" | tee -a $TMUX_LOG_PATH
+    echo "$TIMESTAMP - Killed session: $SESSION_NAME (detached, inactive for ${LAST_ACTIVITY_MINS_ELAPSED}min)" | tee -a $TMUX_LOG_PATH
     tmux kill-session -t ${SESSION_NAME}
     # In case you want to test the script without killing sessions, comment the 2 lines above and uncomment below
     # echo "${SESSION_NAME} is ${LAST_ACTIVITY_MINS_ELAPSED}min inactive and would be killed."
