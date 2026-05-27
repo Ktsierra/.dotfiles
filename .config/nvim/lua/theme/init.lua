@@ -1,10 +1,10 @@
 local theme_specs = {}
 
 local theme_dir = vim.fn.stdpath 'config' .. '/lua/theme'
-local scan = vim.loop.fs_scandir(theme_dir)
+local scan = vim.uv.fs_scandir(theme_dir)
 if scan then
   while true do
-    local name, typ = vim.loop.fs_scandir_next(scan)
+    local name, typ = vim.uv.fs_scandir_next(scan)
     if not name then
       break
     end

@@ -37,7 +37,7 @@ function M.delete_menu()
           vim.notify(string.format('Removed "%s" from Harpoon list.', filename))
           harpoon_utils.update_harpoon_keymaps()
           close_win()
-        end, { buffer = buf, nowait = true, silent = true })
+        end, { buf = buf, nowait = true, silent = true })
       end
     else
       table.insert(lines_to_display, string.format('  %d: [empty]', i))
@@ -66,8 +66,8 @@ function M.delete_menu()
     title_pos = 'left',
   })
 
-  vim.keymap.set('n', 'q', close_win, { buffer = buf, nowait = true, silent = true })
-  vim.keymap.set('n', '<Esc>', close_win, { buffer = buf, nowait = true, silent = true })
+  vim.keymap.set('n', 'q', close_win, { buf = buf, nowait = true, silent = true })
+  vim.keymap.set('n', '<Esc>', close_win, { buf = buf, nowait = true, silent = true })
 end
 
 return M

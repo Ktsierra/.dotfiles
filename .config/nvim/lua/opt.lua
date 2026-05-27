@@ -83,5 +83,3 @@ vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.smartindent = true
 
--- Persistent undofile
-vim.o.undofile = true
